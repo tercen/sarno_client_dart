@@ -17,7 +17,7 @@ class GetHealth200Response {
     this.data,
   });
 
-  GetHealth200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class GetHealth200Response {
       }());
 
       return GetHealth200Response(
-        success: GetHealth200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: HealthData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class GetHealth200Response {
     'success',
   };
 }
-
-
-class GetHealth200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const GetHealth200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = GetHealth200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][GetHealth200ResponseSuccessEnum].
-  static const values = <GetHealth200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static GetHealth200ResponseSuccessEnum? fromJson(dynamic value) => GetHealth200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<GetHealth200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <GetHealth200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = GetHealth200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [GetHealth200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [GetHealth200ResponseSuccessEnum].
-class GetHealth200ResponseSuccessEnumTypeTransformer {
-  factory GetHealth200ResponseSuccessEnumTypeTransformer() => _instance ??= const GetHealth200ResponseSuccessEnumTypeTransformer._();
-
-  const GetHealth200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(GetHealth200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a GetHealth200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  GetHealth200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return GetHealth200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [GetHealth200ResponseSuccessEnumTypeTransformer] instance.
-  static GetHealth200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

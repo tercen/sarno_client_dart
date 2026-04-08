@@ -17,7 +17,7 @@ class CreateOrganization200Response {
     this.data,
   });
 
-  CreateOrganization200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class CreateOrganization200Response {
       }());
 
       return CreateOrganization200Response(
-        success: CreateOrganization200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: Organization.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class CreateOrganization200Response {
     'success',
   };
 }
-
-
-class CreateOrganization200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateOrganization200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = CreateOrganization200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][CreateOrganization200ResponseSuccessEnum].
-  static const values = <CreateOrganization200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static CreateOrganization200ResponseSuccessEnum? fromJson(dynamic value) => CreateOrganization200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<CreateOrganization200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CreateOrganization200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = CreateOrganization200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [CreateOrganization200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [CreateOrganization200ResponseSuccessEnum].
-class CreateOrganization200ResponseSuccessEnumTypeTransformer {
-  factory CreateOrganization200ResponseSuccessEnumTypeTransformer() => _instance ??= const CreateOrganization200ResponseSuccessEnumTypeTransformer._();
-
-  const CreateOrganization200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(CreateOrganization200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a CreateOrganization200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  CreateOrganization200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return CreateOrganization200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [CreateOrganization200ResponseSuccessEnumTypeTransformer] instance.
-  static CreateOrganization200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

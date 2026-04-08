@@ -17,7 +17,7 @@ class GetPeer200Response {
     this.data,
   });
 
-  GetPeer200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class GetPeer200Response {
       }());
 
       return GetPeer200Response(
-        success: GetPeer200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: Peer.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class GetPeer200Response {
     'success',
   };
 }
-
-
-class GetPeer200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const GetPeer200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = GetPeer200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][GetPeer200ResponseSuccessEnum].
-  static const values = <GetPeer200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static GetPeer200ResponseSuccessEnum? fromJson(dynamic value) => GetPeer200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<GetPeer200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <GetPeer200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = GetPeer200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [GetPeer200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [GetPeer200ResponseSuccessEnum].
-class GetPeer200ResponseSuccessEnumTypeTransformer {
-  factory GetPeer200ResponseSuccessEnumTypeTransformer() => _instance ??= const GetPeer200ResponseSuccessEnumTypeTransformer._();
-
-  const GetPeer200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(GetPeer200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a GetPeer200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  GetPeer200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return GetPeer200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [GetPeer200ResponseSuccessEnumTypeTransformer] instance.
-  static GetPeer200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

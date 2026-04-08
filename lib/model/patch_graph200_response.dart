@@ -17,7 +17,7 @@ class PatchGraph200Response {
     this.data,
   });
 
-  PatchGraph200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class PatchGraph200Response {
       }());
 
       return PatchGraph200Response(
-        success: PatchGraph200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: PatchGraph200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class PatchGraph200Response {
     'success',
   };
 }
-
-
-class PatchGraph200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const PatchGraph200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = PatchGraph200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][PatchGraph200ResponseSuccessEnum].
-  static const values = <PatchGraph200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static PatchGraph200ResponseSuccessEnum? fromJson(dynamic value) => PatchGraph200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<PatchGraph200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <PatchGraph200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = PatchGraph200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [PatchGraph200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [PatchGraph200ResponseSuccessEnum].
-class PatchGraph200ResponseSuccessEnumTypeTransformer {
-  factory PatchGraph200ResponseSuccessEnumTypeTransformer() => _instance ??= const PatchGraph200ResponseSuccessEnumTypeTransformer._();
-
-  const PatchGraph200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(PatchGraph200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a PatchGraph200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  PatchGraph200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return PatchGraph200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [PatchGraph200ResponseSuccessEnumTypeTransformer] instance.
-  static PatchGraph200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

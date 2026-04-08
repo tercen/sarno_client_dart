@@ -17,7 +17,7 @@ class ListTeams200Response {
     this.data = const [],
   });
 
-  ListTeams200ResponseSuccessEnum success;
+  bool success;
 
   List<Team> data;
 
@@ -59,7 +59,7 @@ class ListTeams200Response {
       }());
 
       return ListTeams200Response(
-        success: ListTeams200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: Team.listFromJson(json[r'data']),
       );
     }
@@ -111,75 +111,4 @@ class ListTeams200Response {
     'success',
   };
 }
-
-
-class ListTeams200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListTeams200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = ListTeams200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][ListTeams200ResponseSuccessEnum].
-  static const values = <ListTeams200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static ListTeams200ResponseSuccessEnum? fromJson(dynamic value) => ListTeams200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<ListTeams200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ListTeams200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = ListTeams200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [ListTeams200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [ListTeams200ResponseSuccessEnum].
-class ListTeams200ResponseSuccessEnumTypeTransformer {
-  factory ListTeams200ResponseSuccessEnumTypeTransformer() => _instance ??= const ListTeams200ResponseSuccessEnumTypeTransformer._();
-
-  const ListTeams200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(ListTeams200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ListTeams200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ListTeams200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return ListTeams200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [ListTeams200ResponseSuccessEnumTypeTransformer] instance.
-  static ListTeams200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

@@ -17,7 +17,7 @@ class ApiErr {
     required this.error,
   });
 
-  ApiErrSuccessEnum success;
+  bool success;
 
   String error;
 
@@ -61,7 +61,7 @@ class ApiErr {
       }());
 
       return ApiErr(
-        success: ApiErrSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         error: mapValueOfType<String>(json, r'error')!,
       );
     }
@@ -114,75 +114,4 @@ class ApiErr {
     'error',
   };
 }
-
-
-class ApiErrSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ApiErrSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const false_ = ApiErrSuccessEnum._('false');
-
-  /// List of all possible values in this [enum][ApiErrSuccessEnum].
-  static const values = <ApiErrSuccessEnum>[
-    false_,
-  ];
-
-  static ApiErrSuccessEnum? fromJson(dynamic value) => ApiErrSuccessEnumTypeTransformer().decode(value);
-
-  static List<ApiErrSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ApiErrSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = ApiErrSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [ApiErrSuccessEnum] to bool,
-/// and [decode] dynamic data back to [ApiErrSuccessEnum].
-class ApiErrSuccessEnumTypeTransformer {
-  factory ApiErrSuccessEnumTypeTransformer() => _instance ??= const ApiErrSuccessEnumTypeTransformer._();
-
-  const ApiErrSuccessEnumTypeTransformer._();
-
-  bool encode(ApiErrSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ApiErrSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ApiErrSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'false': return ApiErrSuccessEnum.false_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [ApiErrSuccessEnumTypeTransformer] instance.
-  static ApiErrSuccessEnumTypeTransformer? _instance;
-}
-
 

@@ -16,7 +16,7 @@ class ApiOk {
     required this.success,
   });
 
-  ApiOkSuccessEnum success;
+  bool success;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is ApiOk &&
@@ -53,7 +53,7 @@ class ApiOk {
       }());
 
       return ApiOk(
-        success: ApiOkSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
       );
     }
     return null;
@@ -104,75 +104,4 @@ class ApiOk {
     'success',
   };
 }
-
-
-class ApiOkSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ApiOkSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = ApiOkSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][ApiOkSuccessEnum].
-  static const values = <ApiOkSuccessEnum>[
-    true_,
-  ];
-
-  static ApiOkSuccessEnum? fromJson(dynamic value) => ApiOkSuccessEnumTypeTransformer().decode(value);
-
-  static List<ApiOkSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ApiOkSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = ApiOkSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [ApiOkSuccessEnum] to bool,
-/// and [decode] dynamic data back to [ApiOkSuccessEnum].
-class ApiOkSuccessEnumTypeTransformer {
-  factory ApiOkSuccessEnumTypeTransformer() => _instance ??= const ApiOkSuccessEnumTypeTransformer._();
-
-  const ApiOkSuccessEnumTypeTransformer._();
-
-  bool encode(ApiOkSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ApiOkSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ApiOkSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return ApiOkSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [ApiOkSuccessEnumTypeTransformer] instance.
-  static ApiOkSuccessEnumTypeTransformer? _instance;
-}
-
 

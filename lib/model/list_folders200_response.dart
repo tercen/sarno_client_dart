@@ -17,7 +17,7 @@ class ListFolders200Response {
     this.data = const [],
   });
 
-  ListFolders200ResponseSuccessEnum success;
+  bool success;
 
   List<Folder> data;
 
@@ -59,7 +59,7 @@ class ListFolders200Response {
       }());
 
       return ListFolders200Response(
-        success: ListFolders200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: Folder.listFromJson(json[r'data']),
       );
     }
@@ -111,75 +111,4 @@ class ListFolders200Response {
     'success',
   };
 }
-
-
-class ListFolders200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ListFolders200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = ListFolders200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][ListFolders200ResponseSuccessEnum].
-  static const values = <ListFolders200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static ListFolders200ResponseSuccessEnum? fromJson(dynamic value) => ListFolders200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<ListFolders200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ListFolders200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = ListFolders200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [ListFolders200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [ListFolders200ResponseSuccessEnum].
-class ListFolders200ResponseSuccessEnumTypeTransformer {
-  factory ListFolders200ResponseSuccessEnumTypeTransformer() => _instance ??= const ListFolders200ResponseSuccessEnumTypeTransformer._();
-
-  const ListFolders200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(ListFolders200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ListFolders200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ListFolders200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return ListFolders200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [ListFolders200ResponseSuccessEnumTypeTransformer] instance.
-  static ListFolders200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

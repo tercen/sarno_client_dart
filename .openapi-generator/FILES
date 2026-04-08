@@ -269,11 +269,3 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
-test/create_document200_response_test.dart
-test/create_document_request_test.dart
-test/document_test.dart
-test/documents_api_test.dart
-test/list_documents200_response_test.dart
-test/update_document_request_test.dart
-test/upload_blob200_response_all_of_data_test.dart
-test/upload_blob200_response_test.dart

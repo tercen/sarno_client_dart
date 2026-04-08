@@ -17,7 +17,7 @@ class DeleteOrganization200Response {
     this.data,
   });
 
-  DeleteOrganization200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class DeleteOrganization200Response {
       }());
 
       return DeleteOrganization200Response(
-        success: DeleteOrganization200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: DeleteOrganization200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class DeleteOrganization200Response {
     'success',
   };
 }
-
-
-class DeleteOrganization200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteOrganization200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = DeleteOrganization200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][DeleteOrganization200ResponseSuccessEnum].
-  static const values = <DeleteOrganization200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static DeleteOrganization200ResponseSuccessEnum? fromJson(dynamic value) => DeleteOrganization200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<DeleteOrganization200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <DeleteOrganization200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = DeleteOrganization200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [DeleteOrganization200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [DeleteOrganization200ResponseSuccessEnum].
-class DeleteOrganization200ResponseSuccessEnumTypeTransformer {
-  factory DeleteOrganization200ResponseSuccessEnumTypeTransformer() => _instance ??= const DeleteOrganization200ResponseSuccessEnumTypeTransformer._();
-
-  const DeleteOrganization200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(DeleteOrganization200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a DeleteOrganization200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  DeleteOrganization200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return DeleteOrganization200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [DeleteOrganization200ResponseSuccessEnumTypeTransformer] instance.
-  static DeleteOrganization200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

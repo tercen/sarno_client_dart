@@ -17,7 +17,7 @@ class CreateFolder200Response {
     this.data,
   });
 
-  CreateFolder200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class CreateFolder200Response {
       }());
 
       return CreateFolder200Response(
-        success: CreateFolder200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: Folder.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class CreateFolder200Response {
     'success',
   };
 }
-
-
-class CreateFolder200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const CreateFolder200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = CreateFolder200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][CreateFolder200ResponseSuccessEnum].
-  static const values = <CreateFolder200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static CreateFolder200ResponseSuccessEnum? fromJson(dynamic value) => CreateFolder200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<CreateFolder200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <CreateFolder200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = CreateFolder200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [CreateFolder200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [CreateFolder200ResponseSuccessEnum].
-class CreateFolder200ResponseSuccessEnumTypeTransformer {
-  factory CreateFolder200ResponseSuccessEnumTypeTransformer() => _instance ??= const CreateFolder200ResponseSuccessEnumTypeTransformer._();
-
-  const CreateFolder200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(CreateFolder200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a CreateFolder200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  CreateFolder200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return CreateFolder200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [CreateFolder200ResponseSuccessEnumTypeTransformer] instance.
-  static CreateFolder200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

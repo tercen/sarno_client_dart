@@ -17,7 +17,7 @@ class RemoveTeamProjectAccess200Response {
     this.data,
   });
 
-  RemoveTeamProjectAccess200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class RemoveTeamProjectAccess200Response {
       }());
 
       return RemoveTeamProjectAccess200Response(
-        success: RemoveTeamProjectAccess200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: RemoveTeamProjectAccess200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class RemoveTeamProjectAccess200Response {
     'success',
   };
 }
-
-
-class RemoveTeamProjectAccess200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RemoveTeamProjectAccess200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = RemoveTeamProjectAccess200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][RemoveTeamProjectAccess200ResponseSuccessEnum].
-  static const values = <RemoveTeamProjectAccess200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static RemoveTeamProjectAccess200ResponseSuccessEnum? fromJson(dynamic value) => RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<RemoveTeamProjectAccess200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <RemoveTeamProjectAccess200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = RemoveTeamProjectAccess200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [RemoveTeamProjectAccess200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [RemoveTeamProjectAccess200ResponseSuccessEnum].
-class RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer {
-  factory RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer() => _instance ??= const RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer._();
-
-  const RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(RemoveTeamProjectAccess200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a RemoveTeamProjectAccess200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  RemoveTeamProjectAccess200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return RemoveTeamProjectAccess200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer] instance.
-  static RemoveTeamProjectAccess200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

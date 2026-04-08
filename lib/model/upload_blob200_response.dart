@@ -17,7 +17,7 @@ class UploadBlob200Response {
     this.data,
   });
 
-  UploadBlob200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class UploadBlob200Response {
       }());
 
       return UploadBlob200Response(
-        success: UploadBlob200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: UploadBlob200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class UploadBlob200Response {
     'success',
   };
 }
-
-
-class UploadBlob200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const UploadBlob200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = UploadBlob200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][UploadBlob200ResponseSuccessEnum].
-  static const values = <UploadBlob200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static UploadBlob200ResponseSuccessEnum? fromJson(dynamic value) => UploadBlob200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<UploadBlob200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <UploadBlob200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = UploadBlob200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [UploadBlob200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [UploadBlob200ResponseSuccessEnum].
-class UploadBlob200ResponseSuccessEnumTypeTransformer {
-  factory UploadBlob200ResponseSuccessEnumTypeTransformer() => _instance ??= const UploadBlob200ResponseSuccessEnumTypeTransformer._();
-
-  const UploadBlob200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(UploadBlob200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a UploadBlob200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  UploadBlob200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return UploadBlob200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [UploadBlob200ResponseSuccessEnumTypeTransformer] instance.
-  static UploadBlob200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

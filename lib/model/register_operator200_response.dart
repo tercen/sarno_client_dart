@@ -17,7 +17,7 @@ class RegisterOperator200Response {
     this.data,
   });
 
-  RegisterOperator200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class RegisterOperator200Response {
       }());
 
       return RegisterOperator200Response(
-        success: RegisterOperator200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: RegisterOperator200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class RegisterOperator200Response {
     'success',
   };
 }
-
-
-class RegisterOperator200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const RegisterOperator200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = RegisterOperator200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][RegisterOperator200ResponseSuccessEnum].
-  static const values = <RegisterOperator200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static RegisterOperator200ResponseSuccessEnum? fromJson(dynamic value) => RegisterOperator200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<RegisterOperator200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <RegisterOperator200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = RegisterOperator200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [RegisterOperator200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [RegisterOperator200ResponseSuccessEnum].
-class RegisterOperator200ResponseSuccessEnumTypeTransformer {
-  factory RegisterOperator200ResponseSuccessEnumTypeTransformer() => _instance ??= const RegisterOperator200ResponseSuccessEnumTypeTransformer._();
-
-  const RegisterOperator200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(RegisterOperator200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a RegisterOperator200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  RegisterOperator200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return RegisterOperator200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [RegisterOperator200ResponseSuccessEnumTypeTransformer] instance.
-  static RegisterOperator200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

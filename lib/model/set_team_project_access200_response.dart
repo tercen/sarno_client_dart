@@ -17,7 +17,7 @@ class SetTeamProjectAccess200Response {
     this.data,
   });
 
-  SetTeamProjectAccess200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class SetTeamProjectAccess200Response {
       }());
 
       return SetTeamProjectAccess200Response(
-        success: SetTeamProjectAccess200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: TeamProjectAccess.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class SetTeamProjectAccess200Response {
     'success',
   };
 }
-
-
-class SetTeamProjectAccess200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SetTeamProjectAccess200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = SetTeamProjectAccess200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][SetTeamProjectAccess200ResponseSuccessEnum].
-  static const values = <SetTeamProjectAccess200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static SetTeamProjectAccess200ResponseSuccessEnum? fromJson(dynamic value) => SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<SetTeamProjectAccess200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <SetTeamProjectAccess200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = SetTeamProjectAccess200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [SetTeamProjectAccess200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [SetTeamProjectAccess200ResponseSuccessEnum].
-class SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer {
-  factory SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer() => _instance ??= const SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer._();
-
-  const SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(SetTeamProjectAccess200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SetTeamProjectAccess200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SetTeamProjectAccess200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return SetTeamProjectAccess200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer] instance.
-  static SetTeamProjectAccess200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

@@ -17,7 +17,7 @@ class SubmitGraph200Response {
     this.data,
   });
 
-  SubmitGraph200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class SubmitGraph200Response {
       }());
 
       return SubmitGraph200Response(
-        success: SubmitGraph200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: GraphSubmitted.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class SubmitGraph200Response {
     'success',
   };
 }
-
-
-class SubmitGraph200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const SubmitGraph200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = SubmitGraph200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][SubmitGraph200ResponseSuccessEnum].
-  static const values = <SubmitGraph200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static SubmitGraph200ResponseSuccessEnum? fromJson(dynamic value) => SubmitGraph200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<SubmitGraph200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <SubmitGraph200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = SubmitGraph200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [SubmitGraph200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [SubmitGraph200ResponseSuccessEnum].
-class SubmitGraph200ResponseSuccessEnumTypeTransformer {
-  factory SubmitGraph200ResponseSuccessEnumTypeTransformer() => _instance ??= const SubmitGraph200ResponseSuccessEnumTypeTransformer._();
-
-  const SubmitGraph200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(SubmitGraph200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a SubmitGraph200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  SubmitGraph200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return SubmitGraph200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [SubmitGraph200ResponseSuccessEnumTypeTransformer] instance.
-  static SubmitGraph200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

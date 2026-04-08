@@ -17,7 +17,7 @@ class DeleteGraph200Response {
     this.data,
   });
 
-  DeleteGraph200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class DeleteGraph200Response {
       }());
 
       return DeleteGraph200Response(
-        success: DeleteGraph200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: DeleteGraph200ResponseAllOfData.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class DeleteGraph200Response {
     'success',
   };
 }
-
-
-class DeleteGraph200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const DeleteGraph200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = DeleteGraph200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][DeleteGraph200ResponseSuccessEnum].
-  static const values = <DeleteGraph200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static DeleteGraph200ResponseSuccessEnum? fromJson(dynamic value) => DeleteGraph200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<DeleteGraph200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <DeleteGraph200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = DeleteGraph200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [DeleteGraph200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [DeleteGraph200ResponseSuccessEnum].
-class DeleteGraph200ResponseSuccessEnumTypeTransformer {
-  factory DeleteGraph200ResponseSuccessEnumTypeTransformer() => _instance ??= const DeleteGraph200ResponseSuccessEnumTypeTransformer._();
-
-  const DeleteGraph200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(DeleteGraph200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a DeleteGraph200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  DeleteGraph200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return DeleteGraph200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [DeleteGraph200ResponseSuccessEnumTypeTransformer] instance.
-  static DeleteGraph200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 

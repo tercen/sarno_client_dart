@@ -17,7 +17,7 @@ class ResolveRuntime200Response {
     this.data,
   });
 
-  ResolveRuntime200ResponseSuccessEnum success;
+  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -69,7 +69,7 @@ class ResolveRuntime200Response {
       }());
 
       return ResolveRuntime200Response(
-        success: ResolveRuntime200ResponseSuccessEnum.fromJson(json[r'success'])!,
+        success: mapValueOfType<bool>(json, r'success')!,
         data: RuntimeMetadata.fromJson(json[r'data']),
       );
     }
@@ -121,75 +121,4 @@ class ResolveRuntime200Response {
     'success',
   };
 }
-
-
-class ResolveRuntime200ResponseSuccessEnum {
-  /// Instantiate a new enum with the provided [value].
-  const ResolveRuntime200ResponseSuccessEnum._(this.value);
-
-  /// The underlying value of this enum member.
-  final bool value;
-
-  @override
-  String toString() => value.toString();
-
-  bool toJson() => value;
-
-  static const true_ = ResolveRuntime200ResponseSuccessEnum._('true');
-
-  /// List of all possible values in this [enum][ResolveRuntime200ResponseSuccessEnum].
-  static const values = <ResolveRuntime200ResponseSuccessEnum>[
-    true_,
-  ];
-
-  static ResolveRuntime200ResponseSuccessEnum? fromJson(dynamic value) => ResolveRuntime200ResponseSuccessEnumTypeTransformer().decode(value);
-
-  static List<ResolveRuntime200ResponseSuccessEnum> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <ResolveRuntime200ResponseSuccessEnum>[];
-    if (json is List && json.isNotEmpty) {
-      for (final row in json) {
-        final value = ResolveRuntime200ResponseSuccessEnum.fromJson(row);
-        if (value != null) {
-          result.add(value);
-        }
-      }
-    }
-    return result.toList(growable: growable);
-  }
-}
-
-/// Transformation class that can [encode] an instance of [ResolveRuntime200ResponseSuccessEnum] to bool,
-/// and [decode] dynamic data back to [ResolveRuntime200ResponseSuccessEnum].
-class ResolveRuntime200ResponseSuccessEnumTypeTransformer {
-  factory ResolveRuntime200ResponseSuccessEnumTypeTransformer() => _instance ??= const ResolveRuntime200ResponseSuccessEnumTypeTransformer._();
-
-  const ResolveRuntime200ResponseSuccessEnumTypeTransformer._();
-
-  bool encode(ResolveRuntime200ResponseSuccessEnum data) => data.value;
-
-  /// Decodes a [dynamic value][data] to a ResolveRuntime200ResponseSuccessEnum.
-  ///
-  /// If [allowNull] is true and the [dynamic value][data] cannot be decoded successfully,
-  /// then null is returned. However, if [allowNull] is false and the [dynamic value][data]
-  /// cannot be decoded successfully, then an [UnimplementedError] is thrown.
-  ///
-  /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
-  /// and users are still using an old app with the old code.
-  ResolveRuntime200ResponseSuccessEnum? decode(dynamic data, {bool allowNull = true}) {
-    if (data != null) {
-      switch (data) {
-        case 'true': return ResolveRuntime200ResponseSuccessEnum.true_;
-        default:
-          if (!allowNull) {
-            throw ArgumentError('Unknown enum value to decode: $data');
-          }
-      }
-    }
-    return null;
-  }
-
-  /// Singleton [ResolveRuntime200ResponseSuccessEnumTypeTransformer] instance.
-  static ResolveRuntime200ResponseSuccessEnumTypeTransformer? _instance;
-}
-
 
