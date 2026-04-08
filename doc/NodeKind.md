@@ -1,8 +1,8 @@
-# tercen_client.model.NodeKind
+# sarno_client.model.NodeKind
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

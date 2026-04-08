@@ -1,8 +1,8 @@
-# tercen_client.model.OperatorMetadata
+# sarno_client.model.OperatorMetadata
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

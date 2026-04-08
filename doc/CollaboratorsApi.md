@@ -1,8 +1,8 @@
-# tercen_client.api.CollaboratorsApi
+# sarno_client.api.CollaboratorsApi
 
 ## Load the API package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 All URIs are relative to *http://localhost:8080*
@@ -23,7 +23,7 @@ Requires Admin permission on the project.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -76,7 +76,7 @@ List project collaborators
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -129,7 +129,7 @@ Requires Admin permission on the project.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

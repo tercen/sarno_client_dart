@@ -1,8 +1,8 @@
-# tercen_client.model.GraphNode
+# sarno_client.model.GraphNode
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

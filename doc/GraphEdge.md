@@ -1,8 +1,8 @@
-# tercen_client.model.GraphEdge
+# sarno_client.model.GraphEdge
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

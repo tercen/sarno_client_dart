@@ -1,8 +1,8 @@
-# tercen_client.api.MembersApi
+# sarno_client.api.MembersApi
 
 ## Load the API package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 All URIs are relative to *http://localhost:8080*
@@ -26,7 +26,7 @@ Requires org owner role.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -81,7 +81,7 @@ Requires team maintainer or org owner role.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -136,7 +136,7 @@ List organization members
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -187,7 +187,7 @@ List team members
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -242,7 +242,7 @@ Requires org owner role.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -297,7 +297,7 @@ Requires team maintainer or org owner role.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

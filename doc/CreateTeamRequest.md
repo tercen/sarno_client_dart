@@ -1,8 +1,8 @@
-# tercen_client.model.CreateTeamRequest
+# sarno_client.model.CreateTeamRequest
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

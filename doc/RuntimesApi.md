@@ -1,8 +1,8 @@
-# tercen_client.api.RuntimesApi
+# sarno_client.api.RuntimesApi
 
 ## Load the API package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 All URIs are relative to *http://localhost:8080*
@@ -22,7 +22,7 @@ List runtimes
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -75,7 +75,7 @@ Register a runtime
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -126,7 +126,7 @@ Resolve runtime (latest version)
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -179,7 +179,7 @@ Resolve runtime (specific version)
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

@@ -200,6 +200,10 @@ class ApiClient {
           return CancelTask200Response.fromJson(value);
         case 'CancelTask200ResponseAllOfData':
           return CancelTask200ResponseAllOfData.fromJson(value);
+        case 'CreateDocument200Response':
+          return CreateDocument200Response.fromJson(value);
+        case 'CreateDocumentRequest':
+          return CreateDocumentRequest.fromJson(value);
         case 'CreateFolder200Response':
           return CreateFolder200Response.fromJson(value);
         case 'CreateFolderRequest':
@@ -236,6 +240,8 @@ class ApiClient {
           return DeleteUser200Response.fromJson(value);
         case 'DeleteUser200ResponseAllOfData':
           return DeleteUser200ResponseAllOfData.fromJson(value);
+        case 'Document':
+          return Document.fromJson(value);
         case 'Folder':
           return Folder.fromJson(value);
         case 'GetGraph200Response':
@@ -272,6 +278,8 @@ class ApiClient {
           return JwkSet.fromJson(value);
         case 'JwkSetKeysInner':
           return JwkSetKeysInner.fromJson(value);
+        case 'ListDocuments200Response':
+          return ListDocuments200Response.fromJson(value);
         case 'ListFolders200Response':
           return ListFolders200Response.fromJson(value);
         case 'ListOperators200Response':
@@ -388,6 +396,12 @@ class ApiClient {
           return TokenRequest.fromJson(value);
         case 'TokenResponse':
           return TokenResponse.fromJson(value);
+        case 'UpdateDocumentRequest':
+          return UpdateDocumentRequest.fromJson(value);
+        case 'UploadBlob200Response':
+          return UploadBlob200Response.fromJson(value);
+        case 'UploadBlob200ResponseAllOfData':
+          return UploadBlob200ResponseAllOfData.fromJson(value);
         case 'UserInfo':
           return UserInfo.fromJson(value);
         case 'Visibility':

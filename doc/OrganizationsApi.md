@@ -1,8 +1,8 @@
-# tercen_client.api.OrganizationsApi
+# sarno_client.api.OrganizationsApi
 
 ## Load the API package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 All URIs are relative to *http://localhost:8080*
@@ -24,7 +24,7 @@ The authenticated user becomes the org owner.
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -77,7 +77,7 @@ Requires org owner role. Cascades to teams, memberships, and team-project access
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -128,7 +128,7 @@ Get organization by slug
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -179,7 +179,7 @@ List organizations the authenticated user belongs to
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 // TODO Configure API key authorization: apiKeyAuth
 //defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
 // uncomment below to setup prefix (e.g. Bearer) for API key, if needed

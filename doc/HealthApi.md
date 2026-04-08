@@ -1,8 +1,8 @@
-# tercen_client.api.HealthApi
+# sarno_client.api.HealthApi
 
 ## Load the API package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 All URIs are relative to *http://localhost:8080*
@@ -19,7 +19,7 @@ Health check
 
 ### Example
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 
 final api_instance = HealthApi();
 

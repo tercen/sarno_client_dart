@@ -1,8 +1,8 @@
-# tercen_client.model.ProjectPermission
+# sarno_client.model.ProjectPermission
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties

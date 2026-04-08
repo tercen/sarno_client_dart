@@ -1,8 +1,8 @@
-# tercen_client.model.JwkSetKeysInner
+# sarno_client.model.JwkSetKeysInner
 
 ## Load the model package
 ```dart
-import 'package:tercen_client/api.dart';
+import 'package:sarno_client/api.dart';
 ```
 
 ## Properties
