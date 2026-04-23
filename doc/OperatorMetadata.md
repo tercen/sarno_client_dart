@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **language** | **String** |  | [optional] 
 **runtime** | **String** |  | [optional] 
-**inputSpec** | **Object** |  | [optional] 
-**outputSpec** | **Object** |  | [optional] 
-**properties** | **Object** |  | [optional] 
+**inputSpec** | [**Object**](.md) |  | [optional] 
+**outputSpec** | [**Object**](.md) |  | [optional] 
+**properties** | [**Object**](.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createUser**](UsersApi.md#createuser) | **POST** /api/users | Create a user
 [**deleteUser**](UsersApi.md#deleteuser) | **DELETE** /api/users/{username} | Delete a user
+[**getUser**](UsersApi.md#getuser) | **GET** /api/users/{username} | Get a single user by username
 [**listUsers**](UsersApi.md#listusers) | **GET** /api/users | List users
 
 
@@ -108,6 +109,59 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeleteUser200Response**](DeleteUser200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getUser**
+> GetUser200Response getUser(username)
+
+Get a single user by username
+
+Returns one UserInfo. Returns an object with an `error` field (but still HTTP 200, `success: true`) when the username is not found, matching the board's existing error-envelope convention.
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = UsersApi();
+final username = username_example; // String | 
+
+try {
+    final result = api_instance.getUser(username);
+    print(result);
+} catch (e) {
+    print('Exception when calling UsersApi->getUser: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **String**|  | 
+
+### Return type
+
+[**GetUser200Response**](GetUser200Response.md)
 
 ### Authorization
 

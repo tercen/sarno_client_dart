@@ -79,10 +79,10 @@ class JsonPatchOp {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'op'), 'Required key "JsonPatchOp[op]" is missing from JSON.');
-        assert(json[r'op'] != null, 'Required key "JsonPatchOp[op]" has a null value in JSON.');
-        assert(json.containsKey(r'path'), 'Required key "JsonPatchOp[path]" is missing from JSON.');
-        assert(json[r'path'] != null, 'Required key "JsonPatchOp[path]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "JsonPatchOp[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "JsonPatchOp[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

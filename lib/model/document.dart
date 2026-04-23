@@ -114,24 +114,10 @@ class Document {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "Document[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Document[id]" has a null value in JSON.');
-        assert(json.containsKey(r'project_id'), 'Required key "Document[project_id]" is missing from JSON.');
-        assert(json[r'project_id'] != null, 'Required key "Document[project_id]" has a null value in JSON.');
-        assert(json.containsKey(r'name'), 'Required key "Document[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "Document[name]" has a null value in JSON.');
-        assert(json.containsKey(r'blob_hash'), 'Required key "Document[blob_hash]" is missing from JSON.');
-        assert(json[r'blob_hash'] != null, 'Required key "Document[blob_hash]" has a null value in JSON.');
-        assert(json.containsKey(r'mime_type'), 'Required key "Document[mime_type]" is missing from JSON.');
-        assert(json[r'mime_type'] != null, 'Required key "Document[mime_type]" has a null value in JSON.');
-        assert(json.containsKey(r'size'), 'Required key "Document[size]" is missing from JSON.');
-        assert(json[r'size'] != null, 'Required key "Document[size]" has a null value in JSON.');
-        assert(json.containsKey(r'uploaded_by'), 'Required key "Document[uploaded_by]" is missing from JSON.');
-        assert(json[r'uploaded_by'] != null, 'Required key "Document[uploaded_by]" has a null value in JSON.');
-        assert(json.containsKey(r'created_at'), 'Required key "Document[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Document[created_at]" has a null value in JSON.');
-        assert(json.containsKey(r'updated_at'), 'Required key "Document[updated_at]" is missing from JSON.');
-        assert(json[r'updated_at'] != null, 'Required key "Document[updated_at]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Document[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Document[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

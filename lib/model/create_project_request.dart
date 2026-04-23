@@ -76,12 +76,10 @@ class CreateProjectRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'owner'), 'Required key "CreateProjectRequest[owner]" is missing from JSON.');
-        assert(json[r'owner'] != null, 'Required key "CreateProjectRequest[owner]" has a null value in JSON.');
-        assert(json.containsKey(r'slug'), 'Required key "CreateProjectRequest[slug]" is missing from JSON.');
-        assert(json[r'slug'] != null, 'Required key "CreateProjectRequest[slug]" has a null value in JSON.');
-        assert(json.containsKey(r'display_name'), 'Required key "CreateProjectRequest[display_name]" is missing from JSON.');
-        assert(json[r'display_name'] != null, 'Required key "CreateProjectRequest[display_name]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "CreateProjectRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateProjectRequest[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

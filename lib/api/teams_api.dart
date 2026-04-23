@@ -207,6 +207,129 @@ class TeamsApi {
     return null;
   }
 
+  /// List teams that have access to this project
+  ///
+  /// Returns every team granted access to the project, with permission level and owning-org metadata. Companion to the team-view endpoint at /api/orgs/{slug}/teams/{team_slug}/projects.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectId (required):
+  Future<Response> listProjectTeamAccessWithHttpInfo(String projectId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/projects/{project_id}/team-access'
+      .replaceAll('{project_id}', projectId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List teams that have access to this project
+  ///
+  /// Returns every team granted access to the project, with permission level and owning-org metadata. Companion to the team-view endpoint at /api/orgs/{slug}/teams/{team_slug}/projects.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectId (required):
+  Future<ListProjectTeamAccess200Response?> listProjectTeamAccess(String projectId,) async {
+    final response = await listProjectTeamAccessWithHttpInfo(projectId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListProjectTeamAccess200Response',) as ListProjectTeamAccess200Response;
+    
+    }
+    return null;
+  }
+
+  /// List projects this team has access to
+  ///
+  /// Returns every project granted to the team, with permission level. Companion to the project-view endpoint at /api/projects/{project_id}/team-access.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  ///   Organization URL-safe slug
+  ///
+  /// * [String] teamSlug (required):
+  ///   Team URL-safe slug (unique within org)
+  Future<Response> listTeamProjectAccessWithHttpInfo(String slug, String teamSlug,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/orgs/{slug}/teams/{team_slug}/projects'
+      .replaceAll('{slug}', slug)
+      .replaceAll('{team_slug}', teamSlug);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List projects this team has access to
+  ///
+  /// Returns every project granted to the team, with permission level. Companion to the project-view endpoint at /api/projects/{project_id}/team-access.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] slug (required):
+  ///   Organization URL-safe slug
+  ///
+  /// * [String] teamSlug (required):
+  ///   Team URL-safe slug (unique within org)
+  Future<ListTeamProjectAccess200Response?> listTeamProjectAccess(String slug, String teamSlug,) async {
+    final response = await listTeamProjectAccessWithHttpInfo(slug, teamSlug,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListTeamProjectAccess200Response',) as ListTeamProjectAccess200Response;
+    
+    }
+    return null;
+  }
+
   /// List teams in an organization
   ///
   /// Note: This method returns the HTTP [Response].

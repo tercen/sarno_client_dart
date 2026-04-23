@@ -16,6 +16,73 @@ class OperatorsApi {
 
   final ApiClient apiClient;
 
+  /// Delete an operator version
+  ///
+  /// Symmetric with the existing runtime delete. Returns a not-found envelope if the version does not exist.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] org (required):
+  ///
+  /// * [String] name (required):
+  ///
+  /// * [String] version (required):
+  Future<Response> deleteOperatorVersionWithHttpInfo(String org, String name, String version,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/operators/{org}/{name}/{version}'
+      .replaceAll('{org}', org)
+      .replaceAll('{name}', name)
+      .replaceAll('{version}', version);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'DELETE',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Delete an operator version
+  ///
+  /// Symmetric with the existing runtime delete. Returns a not-found envelope if the version does not exist.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] org (required):
+  ///
+  /// * [String] name (required):
+  ///
+  /// * [String] version (required):
+  Future<DeleteOperatorVersion200Response?> deleteOperatorVersion(String org, String name, String version,) async {
+    final response = await deleteOperatorVersionWithHttpInfo(org, name, version,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'DeleteOperatorVersion200Response',) as DeleteOperatorVersion200Response;
+    
+    }
+    return null;
+  }
+
   /// List operators
   ///
   /// Note: This method returns the HTTP [Response].

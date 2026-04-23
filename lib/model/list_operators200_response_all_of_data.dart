@@ -53,10 +53,10 @@ class ListOperators200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'operators'), 'Required key "ListOperators200ResponseAllOfData[operators]" is missing from JSON.');
-        assert(json[r'operators'] != null, 'Required key "ListOperators200ResponseAllOfData[operators]" has a null value in JSON.');
-        assert(json.containsKey(r'total'), 'Required key "ListOperators200ResponseAllOfData[total]" is missing from JSON.');
-        assert(json[r'total'] != null, 'Required key "ListOperators200ResponseAllOfData[total]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ListOperators200ResponseAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListOperators200ResponseAllOfData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

@@ -53,10 +53,10 @@ class DeleteUser200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'username'), 'Required key "DeleteUser200ResponseAllOfData[username]" is missing from JSON.');
-        assert(json[r'username'] != null, 'Required key "DeleteUser200ResponseAllOfData[username]" has a null value in JSON.');
-        assert(json.containsKey(r'deleted'), 'Required key "DeleteUser200ResponseAllOfData[deleted]" is missing from JSON.');
-        assert(json[r'deleted'] != null, 'Required key "DeleteUser200ResponseAllOfData[deleted]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "DeleteUser200ResponseAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "DeleteUser200ResponseAllOfData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

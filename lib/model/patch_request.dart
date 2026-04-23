@@ -86,10 +86,10 @@ class PatchRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'revision'), 'Required key "PatchRequest[revision]" is missing from JSON.');
-        assert(json[r'revision'] != null, 'Required key "PatchRequest[revision]" has a null value in JSON.');
-        assert(json.containsKey(r'patch'), 'Required key "PatchRequest[patch]" is missing from JSON.');
-        assert(json[r'patch'] != null, 'Required key "PatchRequest[patch]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "PatchRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "PatchRequest[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

@@ -53,10 +53,10 @@ class CreateUser200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'username'), 'Required key "CreateUser200ResponseAllOfData[username]" is missing from JSON.');
-        assert(json[r'username'] != null, 'Required key "CreateUser200ResponseAllOfData[username]" has a null value in JSON.');
-        assert(json.containsKey(r'created'), 'Required key "CreateUser200ResponseAllOfData[created]" is missing from JSON.');
-        assert(json[r'created'] != null, 'Required key "CreateUser200ResponseAllOfData[created]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "CreateUser200ResponseAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "CreateUser200ResponseAllOfData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

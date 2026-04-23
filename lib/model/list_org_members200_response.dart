@@ -53,8 +53,10 @@ class ListOrgMembers200Response {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'success'), 'Required key "ListOrgMembers200Response[success]" is missing from JSON.');
-        assert(json[r'success'] != null, 'Required key "ListOrgMembers200Response[success]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ListOrgMembers200Response[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListOrgMembers200Response[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

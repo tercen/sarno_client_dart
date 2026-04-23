@@ -12,6 +12,8 @@ Method | HTTP request | Description
 [**createTeam**](TeamsApi.md#createteam) | **POST** /api/orgs/{slug}/teams | Create a team in an organization
 [**deleteTeam**](TeamsApi.md#deleteteam) | **DELETE** /api/orgs/{slug}/teams/{team_slug} | Delete a team
 [**getTeam**](TeamsApi.md#getteam) | **GET** /api/orgs/{slug}/teams/{team_slug} | Get team by slug
+[**listProjectTeamAccess**](TeamsApi.md#listprojectteamaccess) | **GET** /api/projects/{project_id}/team-access | List teams that have access to this project
+[**listTeamProjectAccess**](TeamsApi.md#listteamprojectaccess) | **GET** /api/orgs/{slug}/teams/{team_slug}/projects | List projects this team has access to
 [**listTeams**](TeamsApi.md#listteams) | **GET** /api/orgs/{slug}/teams | List teams in an organization
 [**removeTeamProjectAccess**](TeamsApi.md#removeteamprojectaccess) | **DELETE** /api/orgs/{slug}/teams/{team_slug}/projects/{project_id} | Remove team access to a project
 [**setTeamProjectAccess**](TeamsApi.md#setteamprojectaccess) | **PUT** /api/orgs/{slug}/teams/{team_slug}/projects/{project_id} | Set team access level on a project
@@ -168,6 +170,114 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateTeam200Response**](CreateTeam200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listProjectTeamAccess**
+> ListProjectTeamAccess200Response listProjectTeamAccess(projectId)
+
+List teams that have access to this project
+
+Returns every team granted access to the project, with permission level and owning-org metadata. Companion to the team-view endpoint at /api/orgs/{slug}/teams/{team_slug}/projects.
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = TeamsApi();
+final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+
+try {
+    final result = api_instance.listProjectTeamAccess(projectId);
+    print(result);
+} catch (e) {
+    print('Exception when calling TeamsApi->listProjectTeamAccess: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**|  | 
+
+### Return type
+
+[**ListProjectTeamAccess200Response**](ListProjectTeamAccess200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listTeamProjectAccess**
+> ListTeamProjectAccess200Response listTeamProjectAccess(slug, teamSlug)
+
+List projects this team has access to
+
+Returns every project granted to the team, with permission level. Companion to the project-view endpoint at /api/projects/{project_id}/team-access.
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = TeamsApi();
+final slug = slug_example; // String | Organization URL-safe slug
+final teamSlug = teamSlug_example; // String | Team URL-safe slug (unique within org)
+
+try {
+    final result = api_instance.listTeamProjectAccess(slug, teamSlug);
+    print(result);
+} catch (e) {
+    print('Exception when calling TeamsApi->listTeamProjectAccess: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **slug** | **String**| Organization URL-safe slug | 
+ **teamSlug** | **String**| Team URL-safe slug (unique within org) | 
+
+### Return type
+
+[**ListTeamProjectAccess200Response**](ListTeamProjectAccess200Response.md)
 
 ### Authorization
 

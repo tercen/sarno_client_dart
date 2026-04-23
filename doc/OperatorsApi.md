@@ -9,11 +9,69 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**deleteOperatorVersion**](OperatorsApi.md#deleteoperatorversion) | **DELETE** /api/operators/{org}/{name}/{version} | Delete an operator version
 [**listOperators**](OperatorsApi.md#listoperators) | **GET** /api/operators | List operators
 [**registerOperator**](OperatorsApi.md#registeroperator) | **POST** /api/operators | Register an operator
 [**resolveOperator**](OperatorsApi.md#resolveoperator) | **GET** /api/operators/{org}/{name} | Resolve operator (latest version)
 [**resolveOperatorVersion**](OperatorsApi.md#resolveoperatorversion) | **GET** /api/operators/{org}/{name}/{version} | Resolve operator (specific version)
 
+
+# **deleteOperatorVersion**
+> DeleteOperatorVersion200Response deleteOperatorVersion(org, name, version)
+
+Delete an operator version
+
+Symmetric with the existing runtime delete. Returns a not-found envelope if the version does not exist.
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OperatorsApi();
+final org = org_example; // String | 
+final name = name_example; // String | 
+final version = version_example; // String | 
+
+try {
+    final result = api_instance.deleteOperatorVersion(org, name, version);
+    print(result);
+} catch (e) {
+    print('Exception when calling OperatorsApi->deleteOperatorVersion: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **org** | **String**|  | 
+ **name** | **String**|  | 
+ **version** | **String**|  | 
+
+### Return type
+
+[**DeleteOperatorVersion200Response**](DeleteOperatorVersion200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOperators**
 > ListOperators200Response listOperators(org)

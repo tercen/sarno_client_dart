@@ -17,3 +17,6 @@ doc/api/
 
 # Mac
 .DS_Store
+
+# Local workspace (planning docs, scratch notes)
+_local/

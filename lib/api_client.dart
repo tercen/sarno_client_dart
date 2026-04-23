@@ -232,6 +232,10 @@ class ApiClient {
           return DeleteGraph200Response.fromJson(value);
         case 'DeleteGraph200ResponseAllOfData':
           return DeleteGraph200ResponseAllOfData.fromJson(value);
+        case 'DeleteOperatorVersion200Response':
+          return DeleteOperatorVersion200Response.fromJson(value);
+        case 'DeleteOperatorVersion200ResponseAllOfData':
+          return DeleteOperatorVersion200ResponseAllOfData.fromJson(value);
         case 'DeleteOrganization200Response':
           return DeleteOrganization200Response.fromJson(value);
         case 'DeleteOrganization200ResponseAllOfData':
@@ -254,6 +258,8 @@ class ApiClient {
           return GetPeer200Response.fromJson(value);
         case 'GetTask200Response':
           return GetTask200Response.fromJson(value);
+        case 'GetUser200Response':
+          return GetUser200Response.fromJson(value);
         case 'Graph':
           return Graph.fromJson(value);
         case 'GraphCreated':
@@ -296,6 +302,10 @@ class ApiClient {
           return ListPeers200ResponseAllOfData.fromJson(value);
         case 'ListProjectCollaborators200Response':
           return ListProjectCollaborators200Response.fromJson(value);
+        case 'ListProjectTeamAccess200Response':
+          return ListProjectTeamAccess200Response.fromJson(value);
+        case 'ListProjectTeamAccess200ResponseAllOfData':
+          return ListProjectTeamAccess200ResponseAllOfData.fromJson(value);
         case 'ListProjects200Response':
           return ListProjects200Response.fromJson(value);
         case 'ListRuntimes200Response':
@@ -308,6 +318,10 @@ class ApiClient {
           return ListTasks200ResponseAllOfData.fromJson(value);
         case 'ListTeamMembers200Response':
           return ListTeamMembers200Response.fromJson(value);
+        case 'ListTeamProjectAccess200Response':
+          return ListTeamProjectAccess200Response.fromJson(value);
+        case 'ListTeamProjectAccess200ResponseAllOfData':
+          return ListTeamProjectAccess200ResponseAllOfData.fromJson(value);
         case 'ListTeams200Response':
           return ListTeams200Response.fromJson(value);
         case 'ListUsers200Response':
@@ -350,6 +364,8 @@ class ApiClient {
           return ProjectCollaborator.fromJson(value);
         case 'ProjectPermission':
           return ProjectPermissionTypeTransformer().decode(value);
+        case 'ProjectTeamAccessRow':
+          return ProjectTeamAccessRow.fromJson(value);
         case 'RegisterOperator200Response':
           return RegisterOperator200Response.fromJson(value);
         case 'RegisterOperator200ResponseAllOfData':
@@ -390,6 +406,8 @@ class ApiClient {
           return TeamMember.fromJson(value);
         case 'TeamProjectAccess':
           return TeamProjectAccess.fromJson(value);
+        case 'TeamProjectAccessRow':
+          return TeamProjectAccessRow.fromJson(value);
         case 'TeamRole':
           return TeamRoleTypeTransformer().decode(value);
         case 'TokenRequest':

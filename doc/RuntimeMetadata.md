@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] 
 **language** | **String** |  | [optional] 
 **baseImage** | **String** |  | [optional] 
-**packages** | **Object** |  | [optional] 
+**packages** | [**Object**](.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
