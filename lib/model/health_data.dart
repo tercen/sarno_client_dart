@@ -15,30 +15,51 @@ class HealthData {
   HealthData({
     required this.status,
     required this.queueDepth,
+    required this.version,
+    required this.commit,
+    required this.startedAt,
   });
 
   String status;
 
   int queueDepth;
 
+  /// Sarno board version (Cargo package version).
+  String version;
+
+  /// Git short SHA of the running build, or \"unknown\" if the build had no git metadata.
+  String commit;
+
+  /// When the board process started (RFC 3339 UTC).
+  DateTime startedAt;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is HealthData &&
     other.status == status &&
-    other.queueDepth == queueDepth;
+    other.queueDepth == queueDepth &&
+    other.version == version &&
+    other.commit == commit &&
+    other.startedAt == startedAt;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (status.hashCode) +
-    (queueDepth.hashCode);
+    (queueDepth.hashCode) +
+    (version.hashCode) +
+    (commit.hashCode) +
+    (startedAt.hashCode);
 
   @override
-  String toString() => 'HealthData[status=$status, queueDepth=$queueDepth]';
+  String toString() => 'HealthData[status=$status, queueDepth=$queueDepth, version=$version, commit=$commit, startedAt=$startedAt]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'status'] = this.status;
       json[r'queue_depth'] = this.queueDepth;
+      json[r'version'] = this.version;
+      json[r'commit'] = this.commit;
+      json[r'started_at'] = this.startedAt.toUtc().toIso8601String();
     return json;
   }
 
@@ -53,16 +74,19 @@ class HealthData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'status'), 'Required key "HealthData[status]" is missing from JSON.');
-        assert(json[r'status'] != null, 'Required key "HealthData[status]" has a null value in JSON.');
-        assert(json.containsKey(r'queue_depth'), 'Required key "HealthData[queue_depth]" is missing from JSON.');
-        assert(json[r'queue_depth'] != null, 'Required key "HealthData[queue_depth]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "HealthData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "HealthData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 
       return HealthData(
         status: mapValueOfType<String>(json, r'status')!,
         queueDepth: mapValueOfType<int>(json, r'queue_depth')!,
+        version: mapValueOfType<String>(json, r'version')!,
+        commit: mapValueOfType<String>(json, r'commit')!,
+        startedAt: mapDateTime(json, r'started_at', r'')!,
       );
     }
     return null;
@@ -112,6 +136,9 @@ class HealthData {
   static const requiredKeys = <String>{
     'status',
     'queue_depth',
+    'version',
+    'commit',
+    'started_at',
   };
 }
 

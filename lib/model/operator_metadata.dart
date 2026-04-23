@@ -149,12 +149,10 @@ class OperatorMetadata {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'org'), 'Required key "OperatorMetadata[org]" is missing from JSON.');
-        assert(json[r'org'] != null, 'Required key "OperatorMetadata[org]" has a null value in JSON.');
-        assert(json.containsKey(r'name'), 'Required key "OperatorMetadata[name]" is missing from JSON.');
-        assert(json[r'name'] != null, 'Required key "OperatorMetadata[name]" has a null value in JSON.');
-        assert(json.containsKey(r'version'), 'Required key "OperatorMetadata[version]" is missing from JSON.');
-        assert(json[r'version'] != null, 'Required key "OperatorMetadata[version]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "OperatorMetadata[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "OperatorMetadata[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

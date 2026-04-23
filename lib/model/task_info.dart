@@ -165,10 +165,10 @@ class TaskInfo {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'task_id'), 'Required key "TaskInfo[task_id]" is missing from JSON.');
-        assert(json[r'task_id'] != null, 'Required key "TaskInfo[task_id]" has a null value in JSON.');
-        assert(json.containsKey(r'state'), 'Required key "TaskInfo[state]" is missing from JSON.');
-        assert(json[r'state'] != null, 'Required key "TaskInfo[state]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "TaskInfo[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "TaskInfo[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

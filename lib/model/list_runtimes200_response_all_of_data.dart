@@ -53,10 +53,10 @@ class ListRuntimes200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'runtimes'), 'Required key "ListRuntimes200ResponseAllOfData[runtimes]" is missing from JSON.');
-        assert(json[r'runtimes'] != null, 'Required key "ListRuntimes200ResponseAllOfData[runtimes]" has a null value in JSON.');
-        assert(json.containsKey(r'total'), 'Required key "ListRuntimes200ResponseAllOfData[total]" is missing from JSON.');
-        assert(json[r'total'] != null, 'Required key "ListRuntimes200ResponseAllOfData[total]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "ListRuntimes200ResponseAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListRuntimes200ResponseAllOfData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

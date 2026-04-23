@@ -30,6 +30,8 @@ doc/CreateUser200ResponseAllOfData.md
 doc/CreateUserRequest.md
 doc/DeleteGraph200Response.md
 doc/DeleteGraph200ResponseAllOfData.md
+doc/DeleteOperatorVersion200Response.md
+doc/DeleteOperatorVersion200ResponseAllOfData.md
 doc/DeleteOrganization200Response.md
 doc/DeleteOrganization200ResponseAllOfData.md
 doc/DeleteUser200Response.md
@@ -43,6 +45,7 @@ doc/GetGraphHistory200Response.md
 doc/GetHealth200Response.md
 doc/GetPeer200Response.md
 doc/GetTask200Response.md
+doc/GetUser200Response.md
 doc/Graph.md
 doc/GraphCreated.md
 doc/GraphEdge.md
@@ -66,12 +69,16 @@ doc/ListOrganizations200Response.md
 doc/ListPeers200Response.md
 doc/ListPeers200ResponseAllOfData.md
 doc/ListProjectCollaborators200Response.md
+doc/ListProjectTeamAccess200Response.md
+doc/ListProjectTeamAccess200ResponseAllOfData.md
 doc/ListProjects200Response.md
 doc/ListRuntimes200Response.md
 doc/ListRuntimes200ResponseAllOfData.md
 doc/ListTasks200Response.md
 doc/ListTasks200ResponseAllOfData.md
 doc/ListTeamMembers200Response.md
+doc/ListTeamProjectAccess200Response.md
+doc/ListTeamProjectAccess200ResponseAllOfData.md
 doc/ListTeams200Response.md
 doc/ListUsers200Response.md
 doc/ListUsers200ResponseAllOfData.md
@@ -97,6 +104,7 @@ doc/PostTaskRequest.md
 doc/Project.md
 doc/ProjectCollaborator.md
 doc/ProjectPermission.md
+doc/ProjectTeamAccessRow.md
 doc/ProjectsApi.md
 doc/RegisterOperator200Response.md
 doc/RegisterOperator200ResponseAllOfData.md
@@ -120,6 +128,7 @@ doc/TasksApi.md
 doc/Team.md
 doc/TeamMember.md
 doc/TeamProjectAccess.md
+doc/TeamProjectAccessRow.md
 doc/TeamRole.md
 doc/TeamsApi.md
 doc/TokenRequest.md
@@ -181,6 +190,8 @@ lib/model/create_user200_response_all_of_data.dart
 lib/model/create_user_request.dart
 lib/model/delete_graph200_response.dart
 lib/model/delete_graph200_response_all_of_data.dart
+lib/model/delete_operator_version200_response.dart
+lib/model/delete_operator_version200_response_all_of_data.dart
 lib/model/delete_organization200_response.dart
 lib/model/delete_organization200_response_all_of_data.dart
 lib/model/delete_user200_response.dart
@@ -192,6 +203,7 @@ lib/model/get_graph_history200_response.dart
 lib/model/get_health200_response.dart
 lib/model/get_peer200_response.dart
 lib/model/get_task200_response.dart
+lib/model/get_user200_response.dart
 lib/model/graph.dart
 lib/model/graph_created.dart
 lib/model/graph_edge.dart
@@ -213,12 +225,16 @@ lib/model/list_organizations200_response.dart
 lib/model/list_peers200_response.dart
 lib/model/list_peers200_response_all_of_data.dart
 lib/model/list_project_collaborators200_response.dart
+lib/model/list_project_team_access200_response.dart
+lib/model/list_project_team_access200_response_all_of_data.dart
 lib/model/list_projects200_response.dart
 lib/model/list_runtimes200_response.dart
 lib/model/list_runtimes200_response_all_of_data.dart
 lib/model/list_tasks200_response.dart
 lib/model/list_tasks200_response_all_of_data.dart
 lib/model/list_team_members200_response.dart
+lib/model/list_team_project_access200_response.dart
+lib/model/list_team_project_access200_response_all_of_data.dart
 lib/model/list_teams200_response.dart
 lib/model/list_users200_response.dart
 lib/model/list_users200_response_all_of_data.dart
@@ -240,6 +256,7 @@ lib/model/post_task_request.dart
 lib/model/project.dart
 lib/model/project_collaborator.dart
 lib/model/project_permission.dart
+lib/model/project_team_access_row.dart
 lib/model/register_operator200_response.dart
 lib/model/register_operator200_response_all_of_data.dart
 lib/model/register_peer200_response.dart
@@ -260,6 +277,7 @@ lib/model/task_state.dart
 lib/model/team.dart
 lib/model/team_member.dart
 lib/model/team_project_access.dart
+lib/model/team_project_access_row.dart
 lib/model/team_role.dart
 lib/model/token_request.dart
 lib/model/token_response.dart
@@ -269,3 +287,12 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
+test/delete_operator_version200_response_all_of_data_test.dart
+test/delete_operator_version200_response_test.dart
+test/get_user200_response_test.dart
+test/list_project_team_access200_response_all_of_data_test.dart
+test/list_project_team_access200_response_test.dart
+test/list_team_project_access200_response_all_of_data_test.dart
+test/list_team_project_access200_response_test.dart
+test/project_team_access_row_test.dart
+test/team_project_access_row_test.dart

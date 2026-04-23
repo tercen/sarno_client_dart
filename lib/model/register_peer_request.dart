@@ -69,8 +69,10 @@ class RegisterPeerRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'endpoint_id'), 'Required key "RegisterPeerRequest[endpoint_id]" is missing from JSON.');
-        assert(json[r'endpoint_id'] != null, 'Required key "RegisterPeerRequest[endpoint_id]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "RegisterPeerRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "RegisterPeerRequest[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

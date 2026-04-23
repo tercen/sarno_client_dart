@@ -53,10 +53,10 @@ class AddCollaboratorRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'username'), 'Required key "AddCollaboratorRequest[username]" is missing from JSON.');
-        assert(json[r'username'] != null, 'Required key "AddCollaboratorRequest[username]" has a null value in JSON.');
-        assert(json.containsKey(r'permission'), 'Required key "AddCollaboratorRequest[permission]" is missing from JSON.');
-        assert(json[r'permission'] != null, 'Required key "AddCollaboratorRequest[permission]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "AddCollaboratorRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "AddCollaboratorRequest[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

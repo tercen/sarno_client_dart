@@ -129,6 +129,63 @@ class UsersApi {
     return null;
   }
 
+  /// Get a single user by username
+  ///
+  /// Returns one UserInfo. Returns an object with an `error` field (but still HTTP 200, `success: true`) when the username is not found, matching the board's existing error-envelope convention.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] username (required):
+  Future<Response> getUserWithHttpInfo(String username,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/users/{username}'
+      .replaceAll('{username}', username);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get a single user by username
+  ///
+  /// Returns one UserInfo. Returns an object with an `error` field (but still HTTP 200, `success: true`) when the username is not found, matching the board's existing error-envelope convention.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] username (required):
+  Future<GetUser200Response?> getUser(String username,) async {
+    final response = await getUserWithHttpInfo(username,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetUser200Response',) as GetUser200Response;
+    
+    }
+    return null;
+  }
+
   /// List users
   ///
   /// Requires ManageUsers capability (admin role).

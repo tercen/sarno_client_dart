@@ -91,12 +91,10 @@ class JwkSetKeysInner {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'kty'), 'Required key "JwkSetKeysInner[kty]" is missing from JSON.');
-        assert(json[r'kty'] != null, 'Required key "JwkSetKeysInner[kty]" has a null value in JSON.');
-        assert(json.containsKey(r'crv'), 'Required key "JwkSetKeysInner[crv]" is missing from JSON.');
-        assert(json[r'crv'] != null, 'Required key "JwkSetKeysInner[crv]" has a null value in JSON.');
-        assert(json.containsKey(r'x'), 'Required key "JwkSetKeysInner[x]" is missing from JSON.');
-        assert(json[r'x'] != null, 'Required key "JwkSetKeysInner[x]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "JwkSetKeysInner[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "JwkSetKeysInner[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

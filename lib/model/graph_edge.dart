@@ -65,14 +65,10 @@ class GraphEdge {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'from_node'), 'Required key "GraphEdge[from_node]" is missing from JSON.');
-        assert(json[r'from_node'] != null, 'Required key "GraphEdge[from_node]" has a null value in JSON.');
-        assert(json.containsKey(r'from_port'), 'Required key "GraphEdge[from_port]" is missing from JSON.');
-        assert(json[r'from_port'] != null, 'Required key "GraphEdge[from_port]" has a null value in JSON.');
-        assert(json.containsKey(r'to_node'), 'Required key "GraphEdge[to_node]" is missing from JSON.');
-        assert(json[r'to_node'] != null, 'Required key "GraphEdge[to_node]" has a null value in JSON.');
-        assert(json.containsKey(r'to_port'), 'Required key "GraphEdge[to_port]" is missing from JSON.');
-        assert(json[r'to_port'] != null, 'Required key "GraphEdge[to_port]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "GraphEdge[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "GraphEdge[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 
