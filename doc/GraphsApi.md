@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**getGraph**](GraphsApi.md#getgraph) | **GET** /api/graph/{id} | Get current graph state
 [**getGraphAtRevision**](GraphsApi.md#getgraphatrevision) | **GET** /api/graph/{id}/at/{rev} | Get graph state at a specific revision (time travel)
 [**getGraphHistory**](GraphsApi.md#getgraphhistory) | **GET** /api/graph/{id}/history | Get patch history for a graph
+[**listGraphs**](GraphsApi.md#listgraphs) | **GET** /api/projects/{project_id}/graphs | List graphs in a project
 [**patchGraph**](GraphsApi.md#patchgraph) | **PATCH** /api/graph/{id} | Apply JSON Patch (RFC 6902) to graph
 [**submitGraph**](GraphsApi.md#submitgraph) | **POST** /api/graph/{id}/submit | Submit graph for execution
 
@@ -269,6 +270,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetGraphHistory200Response**](GetGraphHistory200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **listGraphs**
+> ListGraphs200Response listGraphs(projectId, folderId, recursive)
+
+List graphs in a project
+
+Requires Read permission on the project. Default scope is graphs at the project root (folder_id IS NULL). Pass `folder_id` to scope to a specific folder, or `recursive=true` to return every graph in the project regardless of folder.
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = GraphsApi();
+final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final folderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by folder (omit for project root)
+final recursive = true; // bool | Return every graph in the project regardless of folder. Overrides `folder_id`.
+
+try {
+    final result = api_instance.listGraphs(projectId, folderId, recursive);
+    print(result);
+} catch (e) {
+    print('Exception when calling GraphsApi->listGraphs: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**|  | 
+ **folderId** | **String**| Filter by folder (omit for project root) | [optional] 
+ **recursive** | **bool**| Return every graph in the project regardless of folder. Overrides `folder_id`. | [optional] 
+
+### Return type
+
+[**ListGraphs200Response**](ListGraphs200Response.md)
 
 ### Authorization
 

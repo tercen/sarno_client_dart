@@ -59,6 +59,7 @@ doc/JwkSet.md
 doc/JwkSetKeysInner.md
 doc/ListDocuments200Response.md
 doc/ListFolders200Response.md
+doc/ListGraphs200Response.md
 doc/ListOperators200Response.md
 doc/ListOperators200ResponseAllOfData.md
 doc/ListOrgMembers200Response.md
@@ -206,6 +207,7 @@ lib/model/jwk_set.dart
 lib/model/jwk_set_keys_inner.dart
 lib/model/list_documents200_response.dart
 lib/model/list_folders200_response.dart
+lib/model/list_graphs200_response.dart
 lib/model/list_operators200_response.dart
 lib/model/list_operators200_response_all_of_data.dart
 lib/model/list_org_members200_response.dart
@@ -269,3 +271,4 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
+test/list_graphs200_response_test.dart

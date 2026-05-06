@@ -66,14 +66,10 @@ class Organization {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "Organization[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Organization[id]" has a null value in JSON.');
-        assert(json.containsKey(r'slug'), 'Required key "Organization[slug]" is missing from JSON.');
-        assert(json[r'slug'] != null, 'Required key "Organization[slug]" has a null value in JSON.');
-        assert(json.containsKey(r'display_name'), 'Required key "Organization[display_name]" is missing from JSON.');
-        assert(json[r'display_name'] != null, 'Required key "Organization[display_name]" has a null value in JSON.');
-        assert(json.containsKey(r'created_at'), 'Required key "Organization[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Organization[created_at]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Organization[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Organization[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

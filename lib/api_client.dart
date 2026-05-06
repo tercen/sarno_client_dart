@@ -282,6 +282,8 @@ class ApiClient {
           return ListDocuments200Response.fromJson(value);
         case 'ListFolders200Response':
           return ListFolders200Response.fromJson(value);
+        case 'ListGraphs200Response':
+          return ListGraphs200Response.fromJson(value);
         case 'ListOperators200Response':
           return ListOperators200Response.fromJson(value);
         case 'ListOperators200ResponseAllOfData':

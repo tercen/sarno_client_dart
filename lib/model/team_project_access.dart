@@ -59,12 +59,10 @@ class TeamProjectAccess {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'team_id'), 'Required key "TeamProjectAccess[team_id]" is missing from JSON.');
-        assert(json[r'team_id'] != null, 'Required key "TeamProjectAccess[team_id]" has a null value in JSON.');
-        assert(json.containsKey(r'project_id'), 'Required key "TeamProjectAccess[project_id]" is missing from JSON.');
-        assert(json[r'project_id'] != null, 'Required key "TeamProjectAccess[project_id]" has a null value in JSON.');
-        assert(json.containsKey(r'permission'), 'Required key "TeamProjectAccess[permission]" is missing from JSON.');
-        assert(json[r'permission'] != null, 'Required key "TeamProjectAccess[permission]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "TeamProjectAccess[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "TeamProjectAccess[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

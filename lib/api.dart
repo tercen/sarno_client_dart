@@ -95,6 +95,7 @@ part 'model/jwk_set.dart';
 part 'model/jwk_set_keys_inner.dart';
 part 'model/list_documents200_response.dart';
 part 'model/list_folders200_response.dart';
+part 'model/list_graphs200_response.dart';
 part 'model/list_operators200_response.dart';
 part 'model/list_operators200_response_all_of_data.dart';
 part 'model/list_org_members200_response.dart';

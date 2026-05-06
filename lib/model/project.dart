@@ -78,18 +78,10 @@ class Project {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "Project[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Project[id]" has a null value in JSON.');
-        assert(json.containsKey(r'owner'), 'Required key "Project[owner]" is missing from JSON.');
-        assert(json[r'owner'] != null, 'Required key "Project[owner]" has a null value in JSON.');
-        assert(json.containsKey(r'slug'), 'Required key "Project[slug]" is missing from JSON.');
-        assert(json[r'slug'] != null, 'Required key "Project[slug]" has a null value in JSON.');
-        assert(json.containsKey(r'display_name'), 'Required key "Project[display_name]" is missing from JSON.');
-        assert(json[r'display_name'] != null, 'Required key "Project[display_name]" has a null value in JSON.');
-        assert(json.containsKey(r'visibility'), 'Required key "Project[visibility]" is missing from JSON.');
-        assert(json[r'visibility'] != null, 'Required key "Project[visibility]" has a null value in JSON.');
-        assert(json.containsKey(r'created_at'), 'Required key "Project[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Project[created_at]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Project[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Project[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

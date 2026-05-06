@@ -71,16 +71,10 @@ class Team {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "Team[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "Team[id]" has a null value in JSON.');
-        assert(json.containsKey(r'org_id'), 'Required key "Team[org_id]" is missing from JSON.');
-        assert(json[r'org_id'] != null, 'Required key "Team[org_id]" has a null value in JSON.');
-        assert(json.containsKey(r'slug'), 'Required key "Team[slug]" is missing from JSON.');
-        assert(json[r'slug'] != null, 'Required key "Team[slug]" has a null value in JSON.');
-        assert(json.containsKey(r'display_name'), 'Required key "Team[display_name]" is missing from JSON.');
-        assert(json[r'display_name'] != null, 'Required key "Team[display_name]" has a null value in JSON.');
-        assert(json.containsKey(r'created_at'), 'Required key "Team[created_at]" is missing from JSON.');
-        assert(json[r'created_at'] != null, 'Required key "Team[created_at]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Team[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Team[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

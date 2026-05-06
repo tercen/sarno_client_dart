@@ -47,8 +47,10 @@ class DeleteOrganization200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'deleted'), 'Required key "DeleteOrganization200ResponseAllOfData[deleted]" is missing from JSON.');
-        assert(json[r'deleted'] != null, 'Required key "DeleteOrganization200ResponseAllOfData[deleted]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "DeleteOrganization200ResponseAllOfData[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "DeleteOrganization200ResponseAllOfData[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

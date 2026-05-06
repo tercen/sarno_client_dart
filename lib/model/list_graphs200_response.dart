@@ -10,52 +10,42 @@
 
 part of openapi.api;
 
-class GetPeer200Response {
-  /// Returns a new [GetPeer200Response] instance.
-  GetPeer200Response({
+class ListGraphs200Response {
+  /// Returns a new [ListGraphs200Response] instance.
+  ListGraphs200Response({
     required this.success,
-    this.data,
+    this.data = const [],
   });
 
   bool success;
 
-  ///
-  /// Please note: This property should have been non-nullable! Since the specification file
-  /// does not include a default value (using the "default:" property), however, the generated
-  /// source code must fall back to having a nullable type.
-  /// Consider adding a "default:" property in the specification file to hide this note.
-  ///
-  Peer? data;
+  List<Graph> data;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is GetPeer200Response &&
+  bool operator ==(Object other) => identical(this, other) || other is ListGraphs200Response &&
     other.success == success &&
-    other.data == data;
+    _deepEquality.equals(other.data, data);
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (success.hashCode) +
-    (data == null ? 0 : data!.hashCode);
+    (data.hashCode);
 
   @override
-  String toString() => 'GetPeer200Response[success=$success, data=$data]';
+  String toString() => 'ListGraphs200Response[success=$success, data=$data]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'success'] = this.success;
-    if (this.data != null) {
       json[r'data'] = this.data;
-    } else {
-      json[r'data'] = null;
-    }
     return json;
   }
 
-  /// Returns a new [GetPeer200Response] instance and imports its values from
+  /// Returns a new [ListGraphs200Response] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static GetPeer200Response? fromJson(dynamic value) {
+  static ListGraphs200Response? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -64,25 +54,25 @@ class GetPeer200Response {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "GetPeer200Response[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "GetPeer200Response[$key]" has a null value in JSON.');
+          assert(json.containsKey(key), 'Required key "ListGraphs200Response[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "ListGraphs200Response[$key]" has a null value in JSON.');
         });
         return true;
       }());
 
-      return GetPeer200Response(
+      return ListGraphs200Response(
         success: mapValueOfType<bool>(json, r'success')!,
-        data: Peer.fromJson(json[r'data']),
+        data: Graph.listFromJson(json[r'data']),
       );
     }
     return null;
   }
 
-  static List<GetPeer200Response> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <GetPeer200Response>[];
+  static List<ListGraphs200Response> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <ListGraphs200Response>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = GetPeer200Response.fromJson(row);
+        final value = ListGraphs200Response.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -91,12 +81,12 @@ class GetPeer200Response {
     return result.toList(growable: growable);
   }
 
-  static Map<String, GetPeer200Response> mapFromJson(dynamic json) {
-    final map = <String, GetPeer200Response>{};
+  static Map<String, ListGraphs200Response> mapFromJson(dynamic json) {
+    final map = <String, ListGraphs200Response>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = GetPeer200Response.fromJson(entry.value);
+        final value = ListGraphs200Response.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -105,14 +95,14 @@ class GetPeer200Response {
     return map;
   }
 
-  // maps a json object with a list of GetPeer200Response-objects as value to a dart map
-  static Map<String, List<GetPeer200Response>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<GetPeer200Response>>{};
+  // maps a json object with a list of ListGraphs200Response-objects as value to a dart map
+  static Map<String, List<ListGraphs200Response>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<ListGraphs200Response>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = GetPeer200Response.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = ListGraphs200Response.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;

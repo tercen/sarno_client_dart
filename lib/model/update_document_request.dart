@@ -59,12 +59,10 @@ class UpdateDocumentRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'blob_hash'), 'Required key "UpdateDocumentRequest[blob_hash]" is missing from JSON.');
-        assert(json[r'blob_hash'] != null, 'Required key "UpdateDocumentRequest[blob_hash]" has a null value in JSON.');
-        assert(json.containsKey(r'mime_type'), 'Required key "UpdateDocumentRequest[mime_type]" is missing from JSON.');
-        assert(json[r'mime_type'] != null, 'Required key "UpdateDocumentRequest[mime_type]" has a null value in JSON.');
-        assert(json.containsKey(r'size'), 'Required key "UpdateDocumentRequest[size]" is missing from JSON.');
-        assert(json[r'size'] != null, 'Required key "UpdateDocumentRequest[size]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "UpdateDocumentRequest[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "UpdateDocumentRequest[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

@@ -75,10 +75,10 @@ class Peer {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'endpoint_id'), 'Required key "Peer[endpoint_id]" is missing from JSON.');
-        assert(json[r'endpoint_id'] != null, 'Required key "Peer[endpoint_id]" has a null value in JSON.');
-        assert(json.containsKey(r'last_seen'), 'Required key "Peer[last_seen]" is missing from JSON.');
-        assert(json[r'last_seen'] != null, 'Required key "Peer[last_seen]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "Peer[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "Peer[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 

@@ -297,6 +297,82 @@ class GraphsApi {
     return null;
   }
 
+  /// List graphs in a project
+  ///
+  /// Requires Read permission on the project. Default scope is graphs at the project root (folder_id IS NULL). Pass `folder_id` to scope to a specific folder, or `recursive=true` to return every graph in the project regardless of folder.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectId (required):
+  ///
+  /// * [String] folderId:
+  ///   Filter by folder (omit for project root)
+  ///
+  /// * [bool] recursive:
+  ///   Return every graph in the project regardless of folder. Overrides `folder_id`.
+  Future<Response> listGraphsWithHttpInfo(String projectId, { String? folderId, bool? recursive, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/projects/{project_id}/graphs'
+      .replaceAll('{project_id}', projectId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (folderId != null) {
+      queryParams.addAll(_queryParams('', 'folder_id', folderId));
+    }
+    if (recursive != null) {
+      queryParams.addAll(_queryParams('', 'recursive', recursive));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// List graphs in a project
+  ///
+  /// Requires Read permission on the project. Default scope is graphs at the project root (folder_id IS NULL). Pass `folder_id` to scope to a specific folder, or `recursive=true` to return every graph in the project regardless of folder.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] projectId (required):
+  ///
+  /// * [String] folderId:
+  ///   Filter by folder (omit for project root)
+  ///
+  /// * [bool] recursive:
+  ///   Return every graph in the project regardless of folder. Overrides `folder_id`.
+  Future<ListGraphs200Response?> listGraphs(String projectId, { String? folderId, bool? recursive, }) async {
+    final response = await listGraphsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListGraphs200Response',) as ListGraphs200Response;
+    
+    }
+    return null;
+  }
+
   /// Apply JSON Patch (RFC 6902) to graph
   ///
   /// Requires Write permission on the graph's project. Uses optimistic locking via revision.

@@ -53,10 +53,10 @@ class GraphCreated {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'id'), 'Required key "GraphCreated[id]" is missing from JSON.');
-        assert(json[r'id'] != null, 'Required key "GraphCreated[id]" has a null value in JSON.');
-        assert(json.containsKey(r'revision'), 'Required key "GraphCreated[revision]" is missing from JSON.');
-        assert(json[r'revision'] != null, 'Required key "GraphCreated[revision]" has a null value in JSON.');
+        requiredKeys.forEach((key) {
+          assert(json.containsKey(key), 'Required key "GraphCreated[$key]" is missing from JSON.');
+          assert(json[key] != null, 'Required key "GraphCreated[$key]" has a null value in JSON.');
+        });
         return true;
       }());
 
