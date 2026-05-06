@@ -271,4 +271,3 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
-test/list_graphs200_response_test.dart

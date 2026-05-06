@@ -15,30 +15,37 @@ class HealthData {
   HealthData({
     required this.status,
     required this.queueDepth,
+    required this.version,
   });
 
   String status;
 
   int queueDepth;
 
+  /// Board binary version (CARGO_PKG_VERSION).
+  String version;
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is HealthData &&
     other.status == status &&
-    other.queueDepth == queueDepth;
+    other.queueDepth == queueDepth &&
+    other.version == version;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
     (status.hashCode) +
-    (queueDepth.hashCode);
+    (queueDepth.hashCode) +
+    (version.hashCode);
 
   @override
-  String toString() => 'HealthData[status=$status, queueDepth=$queueDepth]';
+  String toString() => 'HealthData[status=$status, queueDepth=$queueDepth, version=$version]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
       json[r'status'] = this.status;
       json[r'queue_depth'] = this.queueDepth;
+      json[r'version'] = this.version;
     return json;
   }
 
@@ -63,6 +70,7 @@ class HealthData {
       return HealthData(
         status: mapValueOfType<String>(json, r'status')!,
         queueDepth: mapValueOfType<int>(json, r'queue_depth')!,
+        version: mapValueOfType<String>(json, r'version')!,
       );
     }
     return null;
@@ -112,6 +120,7 @@ class HealthData {
   static const requiredKeys = <String>{
     'status',
     'queue_depth',
+    'version',
   };
 }
 
