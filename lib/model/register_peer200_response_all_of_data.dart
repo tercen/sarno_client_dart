@@ -47,10 +47,8 @@ class RegisterPeer200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RegisterPeer200ResponseAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RegisterPeer200ResponseAllOfData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'registered'), 'Required key "RegisterPeer200ResponseAllOfData[registered]" is missing from JSON.');
+        assert(json[r'registered'] != null, 'Required key "RegisterPeer200ResponseAllOfData[registered]" has a null value in JSON.');
         return true;
       }());
 

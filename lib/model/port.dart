@@ -53,10 +53,10 @@ class Port {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Port[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Port[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Port[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Port[id]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "Port[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "Port[name]" has a null value in JSON.');
         return true;
       }());
 

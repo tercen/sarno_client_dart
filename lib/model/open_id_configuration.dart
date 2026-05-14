@@ -121,10 +121,12 @@ class OpenIdConfiguration {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "OpenIdConfiguration[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "OpenIdConfiguration[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'issuer'), 'Required key "OpenIdConfiguration[issuer]" is missing from JSON.');
+        assert(json[r'issuer'] != null, 'Required key "OpenIdConfiguration[issuer]" has a null value in JSON.');
+        assert(json.containsKey(r'token_endpoint'), 'Required key "OpenIdConfiguration[token_endpoint]" is missing from JSON.');
+        assert(json[r'token_endpoint'] != null, 'Required key "OpenIdConfiguration[token_endpoint]" has a null value in JSON.');
+        assert(json.containsKey(r'jwks_uri'), 'Required key "OpenIdConfiguration[jwks_uri]" is missing from JSON.');
+        assert(json[r'jwks_uri'] != null, 'Required key "OpenIdConfiguration[jwks_uri]" has a null value in JSON.');
         return true;
       }());
 

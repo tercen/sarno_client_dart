@@ -75,10 +75,12 @@ class PatchHistoryEntry {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PatchHistoryEntry[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PatchHistoryEntry[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'sequence'), 'Required key "PatchHistoryEntry[sequence]" is missing from JSON.');
+        assert(json[r'sequence'] != null, 'Required key "PatchHistoryEntry[sequence]" has a null value in JSON.');
+        assert(json.containsKey(r'user_id'), 'Required key "PatchHistoryEntry[user_id]" is missing from JSON.');
+        assert(json[r'user_id'] != null, 'Required key "PatchHistoryEntry[user_id]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "PatchHistoryEntry[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "PatchHistoryEntry[created_at]" has a null value in JSON.');
         return true;
       }());
 

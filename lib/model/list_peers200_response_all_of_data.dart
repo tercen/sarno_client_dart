@@ -47,10 +47,8 @@ class ListPeers200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ListPeers200ResponseAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ListPeers200ResponseAllOfData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'peers'), 'Required key "ListPeers200ResponseAllOfData[peers]" is missing from JSON.');
+        assert(json[r'peers'] != null, 'Required key "ListPeers200ResponseAllOfData[peers]" has a null value in JSON.');
         return true;
       }());
 

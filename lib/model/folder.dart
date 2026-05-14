@@ -82,10 +82,14 @@ class Folder {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Folder[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Folder[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "Folder[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "Folder[id]" has a null value in JSON.');
+        assert(json.containsKey(r'project_id'), 'Required key "Folder[project_id]" is missing from JSON.');
+        assert(json[r'project_id'] != null, 'Required key "Folder[project_id]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "Folder[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "Folder[name]" has a null value in JSON.');
+        assert(json.containsKey(r'created_at'), 'Required key "Folder[created_at]" is missing from JSON.');
+        assert(json[r'created_at'] != null, 'Required key "Folder[created_at]" has a null value in JSON.');
         return true;
       }());
 

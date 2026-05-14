@@ -53,10 +53,10 @@ class GraphSubmitted {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "GraphSubmitted[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "GraphSubmitted[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'graph_id'), 'Required key "GraphSubmitted[graph_id]" is missing from JSON.');
+        assert(json[r'graph_id'] != null, 'Required key "GraphSubmitted[graph_id]" has a null value in JSON.');
+        assert(json.containsKey(r'tasks_posted'), 'Required key "GraphSubmitted[tasks_posted]" is missing from JSON.');
+        assert(json[r'tasks_posted'] != null, 'Required key "GraphSubmitted[tasks_posted]" has a null value in JSON.');
         return true;
       }());
 

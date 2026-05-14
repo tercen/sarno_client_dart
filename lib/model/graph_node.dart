@@ -126,10 +126,18 @@ class GraphNode {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "GraphNode[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "GraphNode[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'id'), 'Required key "GraphNode[id]" is missing from JSON.');
+        assert(json[r'id'] != null, 'Required key "GraphNode[id]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "GraphNode[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "GraphNode[name]" has a null value in JSON.');
+        assert(json.containsKey(r'kind'), 'Required key "GraphNode[kind]" is missing from JSON.');
+        assert(json[r'kind'] != null, 'Required key "GraphNode[kind]" has a null value in JSON.');
+        assert(json.containsKey(r'inputs'), 'Required key "GraphNode[inputs]" is missing from JSON.');
+        assert(json[r'inputs'] != null, 'Required key "GraphNode[inputs]" has a null value in JSON.');
+        assert(json.containsKey(r'outputs'), 'Required key "GraphNode[outputs]" is missing from JSON.');
+        assert(json[r'outputs'] != null, 'Required key "GraphNode[outputs]" has a null value in JSON.');
+        assert(json.containsKey(r'state'), 'Required key "GraphNode[state]" is missing from JSON.');
+        assert(json[r'state'] != null, 'Required key "GraphNode[state]" has a null value in JSON.');
         return true;
       }());
 

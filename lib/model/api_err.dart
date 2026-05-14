@@ -53,10 +53,10 @@ class ApiErr {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "ApiErr[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "ApiErr[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'success'), 'Required key "ApiErr[success]" is missing from JSON.');
+        assert(json[r'success'] != null, 'Required key "ApiErr[success]" has a null value in JSON.');
+        assert(json.containsKey(r'error'), 'Required key "ApiErr[error]" is missing from JSON.');
+        assert(json[r'error'] != null, 'Required key "ApiErr[error]" has a null value in JSON.');
         return true;
       }());
 

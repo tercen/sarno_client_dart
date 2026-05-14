@@ -53,10 +53,10 @@ class CreateTeamRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateTeamRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateTeamRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'slug'), 'Required key "CreateTeamRequest[slug]" is missing from JSON.');
+        assert(json[r'slug'] != null, 'Required key "CreateTeamRequest[slug]" has a null value in JSON.');
+        assert(json.containsKey(r'display_name'), 'Required key "CreateTeamRequest[display_name]" is missing from JSON.');
+        assert(json[r'display_name'] != null, 'Required key "CreateTeamRequest[display_name]" has a null value in JSON.');
         return true;
       }());
 

@@ -47,10 +47,8 @@ class PostTask200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PostTask200ResponseAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PostTask200ResponseAllOfData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'task_id'), 'Required key "PostTask200ResponseAllOfData[task_id]" is missing from JSON.');
+        assert(json[r'task_id'] != null, 'Required key "PostTask200ResponseAllOfData[task_id]" has a null value in JSON.');
         return true;
       }());
 

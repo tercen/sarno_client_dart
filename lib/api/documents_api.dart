@@ -134,6 +134,65 @@ class DocumentsApi {
     return null;
   }
 
+  /// Download a document's bytes
+  ///
+  /// Streams the document's blob with `Content-Type` set from the document's `mime_type` and `Content-Disposition: attachment` carrying the document's name. The byte source is resolved via the same internal path the server uses everywhere — local board store first, then P2P fetch from a registered provider. This is the canonical public path for downloading user-visible artifacts. Raw content-addressed access (by blob hash) is reserved for internal/substrate use only and is not part of the OpenAPI surface.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  Future<Response> downloadDocumentWithHttpInfo(String documentId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/documents/{document_id}/download'
+      .replaceAll('{document_id}', documentId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Download a document's bytes
+  ///
+  /// Streams the document's blob with `Content-Type` set from the document's `mime_type` and `Content-Disposition: attachment` carrying the document's name. The byte source is resolved via the same internal path the server uses everywhere — local board store first, then P2P fetch from a registered provider. This is the canonical public path for downloading user-visible artifacts. Raw content-addressed access (by blob hash) is reserved for internal/substrate use only and is not part of the OpenAPI surface.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  Future<MultipartFile?> downloadDocument(String documentId,) async {
+    final response = await downloadDocumentWithHttpInfo(documentId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'MultipartFile',) as MultipartFile;
+    
+    }
+    return null;
+  }
+
   /// Get document metadata
   ///
   /// Note: This method returns the HTTP [Response].

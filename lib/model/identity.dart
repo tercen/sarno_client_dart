@@ -91,10 +91,12 @@ class Identity {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "Identity[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "Identity[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'subject'), 'Required key "Identity[subject]" is missing from JSON.');
+        assert(json[r'subject'] != null, 'Required key "Identity[subject]" has a null value in JSON.');
+        assert(json.containsKey(r'teams'), 'Required key "Identity[teams]" is missing from JSON.');
+        assert(json[r'teams'] != null, 'Required key "Identity[teams]" has a null value in JSON.');
+        assert(json.containsKey(r'roles'), 'Required key "Identity[roles]" is missing from JSON.');
+        assert(json[r'roles'] != null, 'Required key "Identity[roles]" has a null value in JSON.');
         return true;
       }());
 

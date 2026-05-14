@@ -9,11 +9,69 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**downloadOperatorCode**](OperatorsApi.md#downloadoperatorcode) | **GET** /api/operators/{org}/{name}/{version}/code | Download operator source (admin-only)
 [**listOperators**](OperatorsApi.md#listoperators) | **GET** /api/operators | List operators
 [**registerOperator**](OperatorsApi.md#registeroperator) | **POST** /api/operators | Register an operator
 [**resolveOperator**](OperatorsApi.md#resolveoperator) | **GET** /api/operators/{org}/{name} | Resolve operator (latest version)
 [**resolveOperatorVersion**](OperatorsApi.md#resolveoperatorversion) | **GET** /api/operators/{org}/{name}/{version} | Resolve operator (specific version)
 
+
+# **downloadOperatorCode**
+> String downloadOperatorCode(org, name, version)
+
+Download operator source (admin-only)
+
+Streams the operator's source file by resolving the operator's `code_blob` server-side. Admin-only — used by the security-reviewer agent to inspect operator code without exposing raw content-addressed `/blob/<hash>` reads. The response is `text/plain` with a `Content-Disposition: attachment` filename derived from the language (`.py` / `.R` / `.txt`).
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = OperatorsApi();
+final org = org_example; // String | 
+final name = name_example; // String | 
+final version = version_example; // String | 
+
+try {
+    final result = api_instance.downloadOperatorCode(org, name, version);
+    print(result);
+} catch (e) {
+    print('Exception when calling OperatorsApi->downloadOperatorCode: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **org** | **String**|  | 
+ **name** | **String**|  | 
+ **version** | **String**|  | 
+
+### Return type
+
+**String**
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listOperators**
 > ListOperators200Response listOperators(org)

@@ -76,10 +76,12 @@ class UploadBlob200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "UploadBlob200ResponseAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "UploadBlob200ResponseAllOfData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'hash'), 'Required key "UploadBlob200ResponseAllOfData[hash]" is missing from JSON.');
+        assert(json[r'hash'] != null, 'Required key "UploadBlob200ResponseAllOfData[hash]" has a null value in JSON.');
+        assert(json.containsKey(r'size'), 'Required key "UploadBlob200ResponseAllOfData[size]" is missing from JSON.');
+        assert(json[r'size'] != null, 'Required key "UploadBlob200ResponseAllOfData[size]" has a null value in JSON.');
+        assert(json.containsKey(r'mime_type'), 'Required key "UploadBlob200ResponseAllOfData[mime_type]" is missing from JSON.');
+        assert(json[r'mime_type'] != null, 'Required key "UploadBlob200ResponseAllOfData[mime_type]" has a null value in JSON.');
         return true;
       }());
 

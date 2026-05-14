@@ -91,10 +91,10 @@ class CreateUserRequest {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "CreateUserRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "CreateUserRequest[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'username'), 'Required key "CreateUserRequest[username]" is missing from JSON.');
+        assert(json[r'username'] != null, 'Required key "CreateUserRequest[username]" has a null value in JSON.');
+        assert(json.containsKey(r'password'), 'Required key "CreateUserRequest[password]" is missing from JSON.');
+        assert(json[r'password'] != null, 'Required key "CreateUserRequest[password]" has a null value in JSON.');
         return true;
       }());
 

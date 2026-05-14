@@ -65,10 +65,14 @@ class RegisterOperator200ResponseAllOfData {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "RegisterOperator200ResponseAllOfData[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "RegisterOperator200ResponseAllOfData[$key]" has a null value in JSON.');
-        });
+        assert(json.containsKey(r'registered'), 'Required key "RegisterOperator200ResponseAllOfData[registered]" is missing from JSON.');
+        assert(json[r'registered'] != null, 'Required key "RegisterOperator200ResponseAllOfData[registered]" has a null value in JSON.');
+        assert(json.containsKey(r'org'), 'Required key "RegisterOperator200ResponseAllOfData[org]" is missing from JSON.');
+        assert(json[r'org'] != null, 'Required key "RegisterOperator200ResponseAllOfData[org]" has a null value in JSON.');
+        assert(json.containsKey(r'name'), 'Required key "RegisterOperator200ResponseAllOfData[name]" is missing from JSON.');
+        assert(json[r'name'] != null, 'Required key "RegisterOperator200ResponseAllOfData[name]" has a null value in JSON.');
+        assert(json.containsKey(r'version'), 'Required key "RegisterOperator200ResponseAllOfData[version]" is missing from JSON.');
+        assert(json[r'version'] != null, 'Required key "RegisterOperator200ResponseAllOfData[version]" has a null value in JSON.');
         return true;
       }());
 
