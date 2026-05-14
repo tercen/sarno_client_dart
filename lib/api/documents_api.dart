@@ -246,6 +246,65 @@ class DocumentsApi {
     return null;
   }
 
+  /// Get a document's table schema
+  ///
+  /// Returns the column schema and total row count for the document's underlying parquet table — without reading row data. Cost is O(footer size), so this scales to multi-million-row tables (the row count comes from parquet's footer metadata, not by scanning rows).  Auth: caller needs Read on the document's project.  When the blob is on a worker (operator outputs), falls back to a row-bounded peek with `max_rows=0`. Local-path calls are cheap regardless of table size; worker fallback carries one P2P round-trip plus a single batch decode.
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  Future<Response> getDocumentSchemaWithHttpInfo(String documentId,) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/documents/{document_id}/schema'
+      .replaceAll('{document_id}', documentId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Get a document's table schema
+  ///
+  /// Returns the column schema and total row count for the document's underlying parquet table — without reading row data. Cost is O(footer size), so this scales to multi-million-row tables (the row count comes from parquet's footer metadata, not by scanning rows).  Auth: caller needs Read on the document's project.  When the blob is on a worker (operator outputs), falls back to a row-bounded peek with `max_rows=0`. Local-path calls are cheap regardless of table size; worker fallback carries one P2P round-trip plus a single batch decode.
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  Future<GetDocumentSchema200Response?> getDocumentSchema(String documentId,) async {
+    final response = await getDocumentSchemaWithHttpInfo(documentId,);
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'GetDocumentSchema200Response',) as GetDocumentSchema200Response;
+    
+    }
+    return null;
+  }
+
   /// List documents in a project
   ///
   /// Note: This method returns the HTTP [Response].
@@ -304,6 +363,84 @@ class DocumentsApi {
     // FormatException when trying to decode an empty string.
     if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
       return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'ListDocuments200Response',) as ListDocuments200Response;
+    
+    }
+    return null;
+  }
+
+  /// Peek into a document's table data
+  ///
+  /// Returns a JSON projection of the document's underlying TableData (parquet/columnar). Caller passes the document UUID (the public handle); the blob hash behind it is internal. Use this for SQL-`SELECT col1, col2 LIMIT N`-shaped reads against operator outputs or uploaded data documents.  Auth: caller needs Read on the document's project.  The board resolves the blob locally if present; otherwise it P2P-fetches from a registered provider (typically the worker that produced the operator output).
+  ///
+  /// Note: This method returns the HTTP [Response].
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  ///
+  /// * [int] maxRows:
+  ///   Row count cap. Default 20, hard cap 1000.
+  ///
+  /// * [String] columns:
+  ///   Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection).
+  Future<Response> peekDocumentWithHttpInfo(String documentId, { int? maxRows, String? columns, }) async {
+    // ignore: prefer_const_declarations
+    final path = r'/api/documents/{document_id}/peek'
+      .replaceAll('{document_id}', documentId);
+
+    // ignore: prefer_final_locals
+    Object? postBody;
+
+    final queryParams = <QueryParam>[];
+    final headerParams = <String, String>{};
+    final formParams = <String, String>{};
+
+    if (maxRows != null) {
+      queryParams.addAll(_queryParams('', 'max_rows', maxRows));
+    }
+    if (columns != null) {
+      queryParams.addAll(_queryParams('', 'columns', columns));
+    }
+
+    const contentTypes = <String>[];
+
+
+    return apiClient.invokeAPI(
+      path,
+      'GET',
+      queryParams,
+      postBody,
+      headerParams,
+      formParams,
+      contentTypes.isEmpty ? null : contentTypes.first,
+    );
+  }
+
+  /// Peek into a document's table data
+  ///
+  /// Returns a JSON projection of the document's underlying TableData (parquet/columnar). Caller passes the document UUID (the public handle); the blob hash behind it is internal. Use this for SQL-`SELECT col1, col2 LIMIT N`-shaped reads against operator outputs or uploaded data documents.  Auth: caller needs Read on the document's project.  The board resolves the blob locally if present; otherwise it P2P-fetches from a registered provider (typically the worker that produced the operator output).
+  ///
+  /// Parameters:
+  ///
+  /// * [String] documentId (required):
+  ///   Document UUID
+  ///
+  /// * [int] maxRows:
+  ///   Row count cap. Default 20, hard cap 1000.
+  ///
+  /// * [String] columns:
+  ///   Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection).
+  Future<PeekDocument200Response?> peekDocument(String documentId, { int? maxRows, String? columns, }) async {
+    final response = await peekDocumentWithHttpInfo(documentId,  maxRows: maxRows, columns: columns, );
+    if (response.statusCode >= HttpStatus.badRequest) {
+      throw ApiException(response.statusCode, await _decodeBodyBytes(response));
+    }
+    // When a remote server returns no body with a status of 204, we shall not decode it.
+    // At the time of writing this, `dart:convert` will throw an "Unexpected end of input"
+    // FormatException when trying to decode an empty string.
+    if (response.body.isNotEmpty && response.statusCode != HttpStatus.noContent) {
+      return await apiClient.deserializeAsync(await _decodeBodyBytes(response), 'PeekDocument200Response',) as PeekDocument200Response;
     
     }
     return null;

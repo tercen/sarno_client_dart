@@ -35,9 +35,13 @@ doc/DeleteOrganization200ResponseAllOfData.md
 doc/DeleteUser200Response.md
 doc/DeleteUser200ResponseAllOfData.md
 doc/Document.md
+doc/DocumentPeek.md
+doc/DocumentPeekColumnsInner.md
+doc/DocumentSchema.md
 doc/DocumentsApi.md
 doc/Folder.md
 doc/FoldersApi.md
+doc/GetDocumentSchema200Response.md
 doc/GetGraph200Response.md
 doc/GetGraphHistory200Response.md
 doc/GetHealth200Response.md
@@ -89,6 +93,7 @@ doc/PatchGraph200Response.md
 doc/PatchGraph200ResponseAllOfData.md
 doc/PatchHistoryEntry.md
 doc/PatchRequest.md
+doc/PeekDocument200Response.md
 doc/Peer.md
 doc/PeersApi.md
 doc/Port.md
@@ -187,7 +192,11 @@ lib/model/delete_organization200_response_all_of_data.dart
 lib/model/delete_user200_response.dart
 lib/model/delete_user200_response_all_of_data.dart
 lib/model/document.dart
+lib/model/document_peek.dart
+lib/model/document_peek_columns_inner.dart
+lib/model/document_schema.dart
 lib/model/folder.dart
+lib/model/get_document_schema200_response.dart
 lib/model/get_graph200_response.dart
 lib/model/get_graph_history200_response.dart
 lib/model/get_health200_response.dart
@@ -234,6 +243,7 @@ lib/model/patch_graph200_response.dart
 lib/model/patch_graph200_response_all_of_data.dart
 lib/model/patch_history_entry.dart
 lib/model/patch_request.dart
+lib/model/peek_document200_response.dart
 lib/model/peer.dart
 lib/model/port.dart
 lib/model/post_task200_response.dart
@@ -271,3 +281,8 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
+test/document_peek_columns_inner_test.dart
+test/document_peek_test.dart
+test/document_schema_test.dart
+test/get_document_schema200_response_test.dart
+test/peek_document200_response_test.dart

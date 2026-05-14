@@ -242,8 +242,16 @@ class ApiClient {
           return DeleteUser200ResponseAllOfData.fromJson(value);
         case 'Document':
           return Document.fromJson(value);
+        case 'DocumentPeek':
+          return DocumentPeek.fromJson(value);
+        case 'DocumentPeekColumnsInner':
+          return DocumentPeekColumnsInner.fromJson(value);
+        case 'DocumentSchema':
+          return DocumentSchema.fromJson(value);
         case 'Folder':
           return Folder.fromJson(value);
+        case 'GetDocumentSchema200Response':
+          return GetDocumentSchema200Response.fromJson(value);
         case 'GetGraph200Response':
           return GetGraph200Response.fromJson(value);
         case 'GetGraphHistory200Response':
@@ -336,6 +344,8 @@ class ApiClient {
           return PatchHistoryEntry.fromJson(value);
         case 'PatchRequest':
           return PatchRequest.fromJson(value);
+        case 'PeekDocument200Response':
+          return PeekDocument200Response.fromJson(value);
         case 'Peer':
           return Peer.fromJson(value);
         case 'Port':

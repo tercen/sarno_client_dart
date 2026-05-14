@@ -72,7 +72,9 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**deleteDocument**](doc//DocumentsApi.md#deletedocument) | **DELETE** /api/documents/{document_id} | Delete a document
 *DocumentsApi* | [**downloadDocument**](doc//DocumentsApi.md#downloaddocument) | **GET** /api/documents/{document_id}/download | Download a document's bytes
 *DocumentsApi* | [**getDocument**](doc//DocumentsApi.md#getdocument) | **GET** /api/documents/{document_id} | Get document metadata
+*DocumentsApi* | [**getDocumentSchema**](doc//DocumentsApi.md#getdocumentschema) | **GET** /api/documents/{document_id}/schema | Get a document's table schema
 *DocumentsApi* | [**listDocuments**](doc//DocumentsApi.md#listdocuments) | **GET** /api/projects/{project_id}/documents | List documents in a project
+*DocumentsApi* | [**peekDocument**](doc//DocumentsApi.md#peekdocument) | **GET** /api/documents/{document_id}/peek | Peek into a document's table data
 *DocumentsApi* | [**updateDocument**](doc//DocumentsApi.md#updatedocument) | **PUT** /api/documents/{document_id} | Update a document (new blob version)
 *FoldersApi* | [**createFolder**](doc//FoldersApi.md#createfolder) | **POST** /api/projects/{project_id}/folders | Create a folder in a project
 *FoldersApi* | [**deleteFolder**](doc//FoldersApi.md#deletefolder) | **DELETE** /api/folders/{folder_id} | Delete a folder
@@ -159,7 +161,11 @@ Class | Method | HTTP request | Description
  - [DeleteUser200Response](doc//DeleteUser200Response.md)
  - [DeleteUser200ResponseAllOfData](doc//DeleteUser200ResponseAllOfData.md)
  - [Document](doc//Document.md)
+ - [DocumentPeek](doc//DocumentPeek.md)
+ - [DocumentPeekColumnsInner](doc//DocumentPeekColumnsInner.md)
+ - [DocumentSchema](doc//DocumentSchema.md)
  - [Folder](doc//Folder.md)
+ - [GetDocumentSchema200Response](doc//GetDocumentSchema200Response.md)
  - [GetGraph200Response](doc//GetGraph200Response.md)
  - [GetGraphHistory200Response](doc//GetGraphHistory200Response.md)
  - [GetHealth200Response](doc//GetHealth200Response.md)
@@ -206,6 +212,7 @@ Class | Method | HTTP request | Description
  - [PatchGraph200ResponseAllOfData](doc//PatchGraph200ResponseAllOfData.md)
  - [PatchHistoryEntry](doc//PatchHistoryEntry.md)
  - [PatchRequest](doc//PatchRequest.md)
+ - [PeekDocument200Response](doc//PeekDocument200Response.md)
  - [Peer](doc//Peer.md)
  - [Port](doc//Port.md)
  - [PostTask200Response](doc//PostTask200Response.md)
