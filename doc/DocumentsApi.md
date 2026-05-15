@@ -307,7 +307,7 @@ final api_instance = DocumentsApi();
 final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final folderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by folder (omit for project root)
 final recursive = true; // bool | Return every document in the project regardless of folder. Overrides `folder_id`.
-final branch = branch_example; // String | Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
+final branch = branch_example; // String | Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
 
 try {
     final result = api_instance.listDocuments(projectId, folderId, recursive, branch);
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
  **projectId** | **String**|  | 
  **folderId** | **String**| Filter by folder (omit for project root) | [optional] 
  **recursive** | **bool**| Return every document in the project regardless of folder. Overrides `folder_id`. | [optional] 
- **branch** | **String**| Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`. | [optional] 
+ **branch** | **String**| Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`. | [optional] 
 
 ### Return type
 

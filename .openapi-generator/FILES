@@ -295,10 +295,3 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
-test/branches_api_test.dart
-test/merge_branches200_response_test.dart
-test/merge_branches409_response_test.dart
-test/merge_conflict_payload_test.dart
-test/merge_conflict_test.dart
-test/merge_request_test.dart
-test/merge_result_test.dart

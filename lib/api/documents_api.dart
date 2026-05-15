@@ -320,7 +320,7 @@ class DocumentsApi {
   ///   Return every document in the project regardless of folder. Overrides `folder_id`.
   ///
   /// * [String] branch:
-  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
+  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
   Future<Response> listDocumentsWithHttpInfo(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/projects/{project_id}/documents'
@@ -370,7 +370,7 @@ class DocumentsApi {
   ///   Return every document in the project regardless of folder. Overrides `folder_id`.
   ///
   /// * [String] branch:
-  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
+  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
   Future<ListDocuments200Response?> listDocuments(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
     final response = await listDocumentsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
