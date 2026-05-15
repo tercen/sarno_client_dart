@@ -321,7 +321,10 @@ class DocumentsApi {
   ///
   /// * [String] branch:
   ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
-  Future<Response> listDocumentsWithHttpInfo(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
+  ///
+  /// * [String] diffAgainst:
+  ///   Filter to artifacts present on `branch` but NOT on this target branch — the \"what does applying this branch add?\" projection. Powers review-before-merge UIs that need to show only the new rows the agent produced. Identity is by document/graph id; rows whose id is on both sides count as unchanged regardless of any blob_hash difference (content-aware diff is a future extension). Requires `branch=` to be set.
+  Future<Response> listDocumentsWithHttpInfo(String projectId, { String? folderId, bool? recursive, String? branch, String? diffAgainst, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/projects/{project_id}/documents'
       .replaceAll('{project_id}', projectId);
@@ -341,6 +344,9 @@ class DocumentsApi {
     }
     if (branch != null) {
       queryParams.addAll(_queryParams('', 'branch', branch));
+    }
+    if (diffAgainst != null) {
+      queryParams.addAll(_queryParams('', 'diff_against', diffAgainst));
     }
 
     const contentTypes = <String>[];
@@ -371,8 +377,11 @@ class DocumentsApi {
   ///
   /// * [String] branch:
   ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
-  Future<ListDocuments200Response?> listDocuments(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
-    final response = await listDocumentsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, branch: branch, );
+  ///
+  /// * [String] diffAgainst:
+  ///   Filter to artifacts present on `branch` but NOT on this target branch — the \"what does applying this branch add?\" projection. Powers review-before-merge UIs that need to show only the new rows the agent produced. Identity is by document/graph id; rows whose id is on both sides count as unchanged regardless of any blob_hash difference (content-aware diff is a future extension). Requires `branch=` to be set.
+  Future<ListDocuments200Response?> listDocuments(String projectId, { String? folderId, bool? recursive, String? branch, String? diffAgainst, }) async {
+    final response = await listDocumentsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, branch: branch, diffAgainst: diffAgainst, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

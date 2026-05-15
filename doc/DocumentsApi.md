@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listDocuments**
-> ListDocuments200Response listDocuments(projectId, folderId, recursive, branch)
+> ListDocuments200Response listDocuments(projectId, folderId, recursive, branch, diffAgainst)
 
 List documents in a project
 
@@ -308,9 +308,10 @@ final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String |
 final folderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by folder (omit for project root)
 final recursive = true; // bool | Return every document in the project regardless of folder. Overrides `folder_id`.
 final branch = branch_example; // String | Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`.
+final diffAgainst = diffAgainst_example; // String | Filter to artifacts present on `branch` but NOT on this target branch — the \"what does applying this branch add?\" projection. Powers review-before-merge UIs that need to show only the new rows the agent produced. Identity is by document/graph id; rows whose id is on both sides count as unchanged regardless of any blob_hash difference (content-aware diff is a future extension). Requires `branch=` to be set.
 
 try {
-    final result = api_instance.listDocuments(projectId, folderId, recursive, branch);
+    final result = api_instance.listDocuments(projectId, folderId, recursive, branch, diffAgainst);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->listDocuments: $e\n');
@@ -325,6 +326,7 @@ Name | Type | Description  | Notes
  **folderId** | **String**| Filter by folder (omit for project root) | [optional] 
  **recursive** | **bool**| Return every document in the project regardless of folder. Overrides `folder_id`. | [optional] 
  **branch** | **String**| Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs.  When `branch` is set, the response also surfaces saved graphs (workflows committed via `mcr_save`) as document-shaped rows with `mime_type=application/vnd.tercen.graph+json`. Consumers should dispatch by mime_type: for graph rows, call `graph_get(id)` for execution metadata; the per-document endpoints (`/download`, `/peek`, `/schema`) return 404 for graph ids. See `docs/agent_branch_merge.md` and `docs/artifact_model.md`. | [optional] 
+ **diffAgainst** | **String**| Filter to artifacts present on `branch` but NOT on this target branch — the \"what does applying this branch add?\" projection. Powers review-before-merge UIs that need to show only the new rows the agent produced. Identity is by document/graph id; rows whose id is on both sides count as unchanged regardless of any blob_hash difference (content-aware diff is a future extension). Requires `branch=` to be set. | [optional] 
 
 ### Return type
 
