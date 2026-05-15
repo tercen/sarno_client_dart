@@ -315,7 +315,13 @@ class DocumentsApi {
   ///
   /// * [String] folderId:
   ///   Filter by folder (omit for project root)
-  Future<Response> listDocumentsWithHttpInfo(String projectId, { String? folderId, }) async {
+  ///
+  /// * [bool] recursive:
+  ///   Return every document in the project regardless of folder. Overrides `folder_id`.
+  ///
+  /// * [String] branch:
+  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
+  Future<Response> listDocumentsWithHttpInfo(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/projects/{project_id}/documents'
       .replaceAll('{project_id}', projectId);
@@ -329,6 +335,12 @@ class DocumentsApi {
 
     if (folderId != null) {
       queryParams.addAll(_queryParams('', 'folder_id', folderId));
+    }
+    if (recursive != null) {
+      queryParams.addAll(_queryParams('', 'recursive', recursive));
+    }
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
     }
 
     const contentTypes = <String>[];
@@ -353,8 +365,14 @@ class DocumentsApi {
   ///
   /// * [String] folderId:
   ///   Filter by folder (omit for project root)
-  Future<ListDocuments200Response?> listDocuments(String projectId, { String? folderId, }) async {
-    final response = await listDocumentsWithHttpInfo(projectId,  folderId: folderId, );
+  ///
+  /// * [bool] recursive:
+  ///   Return every document in the project regardless of folder. Overrides `folder_id`.
+  ///
+  /// * [String] branch:
+  ///   Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
+  Future<ListDocuments200Response?> listDocuments(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
+    final response = await listDocumentsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

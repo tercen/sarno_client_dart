@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listDocuments**
-> ListDocuments200Response listDocuments(projectId, folderId)
+> ListDocuments200Response listDocuments(projectId, folderId, recursive, branch)
 
 List documents in a project
 
@@ -306,9 +306,11 @@ import 'package:sarno_client/api.dart';
 final api_instance = DocumentsApi();
 final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final folderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by folder (omit for project root)
+final recursive = true; // bool | Return every document in the project regardless of folder. Overrides `folder_id`.
+final branch = branch_example; // String | Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`.
 
 try {
-    final result = api_instance.listDocuments(projectId, folderId);
+    final result = api_instance.listDocuments(projectId, folderId, recursive, branch);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->listDocuments: $e\n');
@@ -321,6 +323,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**|  | 
  **folderId** | **String**| Filter by folder (omit for project root) | [optional] 
+ **recursive** | **bool**| Return every document in the project regardless of folder. Overrides `folder_id`. | [optional] 
+ **branch** | **String**| Filter to documents visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). Use `agent-<discussion_id>` to scope to an agent session's working branch — the common case for review-before-merge UIs. See `docs/agent_branch_merge.md`. | [optional] 
 
 ### Return type
 

@@ -281,8 +281,3 @@ lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml
-test/document_peek_columns_inner_test.dart
-test/document_peek_test.dart
-test/document_schema_test.dart
-test/get_document_schema200_response_test.dart
-test/peek_document200_response_test.dart
