@@ -324,6 +324,18 @@ class ApiClient {
           return ListUsers200Response.fromJson(value);
         case 'ListUsers200ResponseAllOfData':
           return ListUsers200ResponseAllOfData.fromJson(value);
+        case 'MergeBranches200Response':
+          return MergeBranches200Response.fromJson(value);
+        case 'MergeBranches409Response':
+          return MergeBranches409Response.fromJson(value);
+        case 'MergeConflict':
+          return MergeConflict.fromJson(value);
+        case 'MergeConflictPayload':
+          return MergeConflictPayload.fromJson(value);
+        case 'MergeRequest':
+          return MergeRequest.fromJson(value);
+        case 'MergeResult':
+          return MergeResult.fromJson(value);
         case 'NodeKind':
           return NodeKind.fromJson(value);
         case 'OpenIdConfiguration':

@@ -65,6 +65,7 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**getOpenIdConfiguration**](doc//AuthApi.md#getopenidconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect discovery document
 *AuthApi* | [**getUserInfo**](doc//AuthApi.md#getuserinfo) | **GET** /auth/userinfo | Get authenticated user identity
 *BlobsApi* | [**uploadBlob**](doc//BlobsApi.md#uploadblob) | **POST** /api/upload | Upload a file as a blob
+*BranchesApi* | [**mergeBranches**](doc//BranchesApi.md#mergebranches) | **POST** /api/projects/{project_id}/merges | Merge a source branch into a target branch within a project
 *CollaboratorsApi* | [**addProjectCollaborator**](doc//CollaboratorsApi.md#addprojectcollaborator) | **POST** /api/projects/{project_id}/collaborators | Add a collaborator to a project
 *CollaboratorsApi* | [**listProjectCollaborators**](doc//CollaboratorsApi.md#listprojectcollaborators) | **GET** /api/projects/{project_id}/collaborators | List project collaborators
 *CollaboratorsApi* | [**removeProjectCollaborator**](doc//CollaboratorsApi.md#removeprojectcollaborator) | **DELETE** /api/projects/{project_id}/collaborators/{username} | Remove a collaborator from a project
@@ -202,6 +203,12 @@ Class | Method | HTTP request | Description
  - [ListTeams200Response](doc//ListTeams200Response.md)
  - [ListUsers200Response](doc//ListUsers200Response.md)
  - [ListUsers200ResponseAllOfData](doc//ListUsers200ResponseAllOfData.md)
+ - [MergeBranches200Response](doc//MergeBranches200Response.md)
+ - [MergeBranches409Response](doc//MergeBranches409Response.md)
+ - [MergeConflict](doc//MergeConflict.md)
+ - [MergeConflictPayload](doc//MergeConflictPayload.md)
+ - [MergeRequest](doc//MergeRequest.md)
+ - [MergeResult](doc//MergeResult.md)
  - [NodeKind](doc//NodeKind.md)
  - [OpenIdConfiguration](doc//OpenIdConfiguration.md)
  - [OperatorMetadata](doc//OperatorMetadata.md)
