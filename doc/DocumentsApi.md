@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **downloadDocument**
-> MultipartFile downloadDocument(documentId)
+> MultipartFile downloadDocument(documentId, branch)
 
 Download a document's bytes
 
@@ -150,9 +150,10 @@ import 'package:sarno_client/api.dart';
 
 final api_instance = DocumentsApi();
 final documentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Document UUID
+final branch = branch_example; // String | Stream the branch-specific version of the document. The blob_hash on each branch can differ for the same document id; this query routes the byte source through the branch's MaterializedState. 404 when the document isn't present on the branch.
 
 try {
-    final result = api_instance.downloadDocument(documentId);
+    final result = api_instance.downloadDocument(documentId, branch);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->downloadDocument: $e\n');
@@ -164,6 +165,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **documentId** | **String**| Document UUID | 
+ **branch** | **String**| Stream the branch-specific version of the document. The blob_hash on each branch can differ for the same document id; this query routes the byte source through the branch's MaterializedState. 404 when the document isn't present on the branch. | [optional] 
 
 ### Return type
 
@@ -181,7 +183,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getDocument**
-> CreateDocument200Response getDocument(documentId)
+> CreateDocument200Response getDocument(documentId, branch)
 
 Get document metadata
 
@@ -201,9 +203,10 @@ import 'package:sarno_client/api.dart';
 
 final api_instance = DocumentsApi();
 final documentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final branch = branch_example; // String | Return the branch-specific row (blob_hash, mime_type, size, name, folder_id may differ across branches). 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
 
 try {
-    final result = api_instance.getDocument(documentId);
+    final result = api_instance.getDocument(documentId, branch);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->getDocument: $e\n');
@@ -215,6 +218,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **documentId** | **String**|  | 
+ **branch** | **String**| Return the branch-specific row (blob_hash, mime_type, size, name, folder_id may differ across branches). 404 when the document isn't present on the branch. Omit for the legacy project-wide row. | [optional] 
 
 ### Return type
 
@@ -232,7 +236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getDocumentSchema**
-> GetDocumentSchema200Response getDocumentSchema(documentId)
+> GetDocumentSchema200Response getDocumentSchema(documentId, branch)
 
 Get a document's table schema
 
@@ -254,9 +258,10 @@ import 'package:sarno_client/api.dart';
 
 final api_instance = DocumentsApi();
 final documentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Document UUID
+final branch = branch_example; // String | Schema reflects the branch-specific blob_hash. Returns 404 when the document isn't present on the branch.
 
 try {
-    final result = api_instance.getDocumentSchema(documentId);
+    final result = api_instance.getDocumentSchema(documentId, branch);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->getDocumentSchema: $e\n');
@@ -268,6 +273,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **documentId** | **String**| Document UUID | 
+ **branch** | **String**| Schema reflects the branch-specific blob_hash. Returns 404 when the document isn't present on the branch. | [optional] 
 
 ### Return type
 
@@ -344,7 +350,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **peekDocument**
-> PeekDocument200Response peekDocument(documentId, maxRows, columns)
+> PeekDocument200Response peekDocument(documentId, maxRows, columns, branch)
 
 Peek into a document's table data
 
@@ -368,9 +374,10 @@ final api_instance = DocumentsApi();
 final documentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Document UUID
 final maxRows = 56; // int | Row count cap. Default 20, hard cap 1000.
 final columns = columns_example; // String | Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection).
+final branch = branch_example; // String | Peek the branch-specific blob_hash. Returns 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
 
 try {
-    final result = api_instance.peekDocument(documentId, maxRows, columns);
+    final result = api_instance.peekDocument(documentId, maxRows, columns, branch);
     print(result);
 } catch (e) {
     print('Exception when calling DocumentsApi->peekDocument: $e\n');
@@ -384,6 +391,7 @@ Name | Type | Description  | Notes
  **documentId** | **String**| Document UUID | 
  **maxRows** | **int**| Row count cap. Default 20, hard cap 1000. | [optional] [default to 20]
  **columns** | **String**| Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection). | [optional] 
+ **branch** | **String**| Peek the branch-specific blob_hash. Returns 404 when the document isn't present on the branch. Omit for the legacy project-wide row. | [optional] 
 
 ### Return type
 

@@ -10,14 +10,11 @@
 
 part of openapi.api;
 
-class UploadBlob200Response {
-  /// Returns a new [UploadBlob200Response] instance.
-  UploadBlob200Response({
-    required this.success,
-    this.data,
+class DeleteArtifactComment200Response {
+  /// Returns a new [DeleteArtifactComment200Response] instance.
+  DeleteArtifactComment200Response({
+    this.deleted,
   });
-
-  bool success;
 
   ///
   /// Please note: This property should have been non-nullable! Since the specification file
@@ -25,37 +22,34 @@ class UploadBlob200Response {
   /// source code must fall back to having a nullable type.
   /// Consider adding a "default:" property in the specification file to hide this note.
   ///
-  UploadBlob200ResponseAllOfData? data;
+  String? deleted;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is UploadBlob200Response &&
-    other.success == success &&
-    other.data == data;
+  bool operator ==(Object other) => identical(this, other) || other is DeleteArtifactComment200Response &&
+    other.deleted == deleted;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
-    (success.hashCode) +
-    (data == null ? 0 : data!.hashCode);
+    (deleted == null ? 0 : deleted!.hashCode);
 
   @override
-  String toString() => 'UploadBlob200Response[success=$success, data=$data]';
+  String toString() => 'DeleteArtifactComment200Response[deleted=$deleted]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-      json[r'success'] = this.success;
-    if (this.data != null) {
-      json[r'data'] = this.data;
+    if (this.deleted != null) {
+      json[r'deleted'] = this.deleted;
     } else {
-      json[r'data'] = null;
+      json[r'deleted'] = null;
     }
     return json;
   }
 
-  /// Returns a new [UploadBlob200Response] instance and imports its values from
+  /// Returns a new [DeleteArtifactComment200Response] instance and imports its values from
   /// [value] if it's a [Map], null otherwise.
   // ignore: prefer_constructors_over_static_methods
-  static UploadBlob200Response? fromJson(dynamic value) {
+  static DeleteArtifactComment200Response? fromJson(dynamic value) {
     if (value is Map) {
       final json = value.cast<String, dynamic>();
 
@@ -63,24 +57,21 @@ class UploadBlob200Response {
       // Note 1: the values aren't checked for validity beyond being non-null.
       // Note 2: this code is stripped in release mode!
       assert(() {
-        assert(json.containsKey(r'success'), 'Required key "UploadBlob200Response[success]" is missing from JSON.');
-        assert(json[r'success'] != null, 'Required key "UploadBlob200Response[success]" has a null value in JSON.');
         return true;
       }());
 
-      return UploadBlob200Response(
-        success: mapValueOfType<bool>(json, r'success')!,
-        data: UploadBlob200ResponseAllOfData.fromJson(json[r'data']),
+      return DeleteArtifactComment200Response(
+        deleted: mapValueOfType<String>(json, r'deleted'),
       );
     }
     return null;
   }
 
-  static List<UploadBlob200Response> listFromJson(dynamic json, {bool growable = false,}) {
-    final result = <UploadBlob200Response>[];
+  static List<DeleteArtifactComment200Response> listFromJson(dynamic json, {bool growable = false,}) {
+    final result = <DeleteArtifactComment200Response>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
-        final value = UploadBlob200Response.fromJson(row);
+        final value = DeleteArtifactComment200Response.fromJson(row);
         if (value != null) {
           result.add(value);
         }
@@ -89,12 +80,12 @@ class UploadBlob200Response {
     return result.toList(growable: growable);
   }
 
-  static Map<String, UploadBlob200Response> mapFromJson(dynamic json) {
-    final map = <String, UploadBlob200Response>{};
+  static Map<String, DeleteArtifactComment200Response> mapFromJson(dynamic json) {
+    final map = <String, DeleteArtifactComment200Response>{};
     if (json is Map && json.isNotEmpty) {
       json = json.cast<String, dynamic>(); // ignore: parameter_assignments
       for (final entry in json.entries) {
-        final value = UploadBlob200Response.fromJson(entry.value);
+        final value = DeleteArtifactComment200Response.fromJson(entry.value);
         if (value != null) {
           map[entry.key] = value;
         }
@@ -103,14 +94,14 @@ class UploadBlob200Response {
     return map;
   }
 
-  // maps a json object with a list of UploadBlob200Response-objects as value to a dart map
-  static Map<String, List<UploadBlob200Response>> mapListFromJson(dynamic json, {bool growable = false,}) {
-    final map = <String, List<UploadBlob200Response>>{};
+  // maps a json object with a list of DeleteArtifactComment200Response-objects as value to a dart map
+  static Map<String, List<DeleteArtifactComment200Response>> mapListFromJson(dynamic json, {bool growable = false,}) {
+    final map = <String, List<DeleteArtifactComment200Response>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = UploadBlob200Response.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = DeleteArtifactComment200Response.listFromJson(entry.value, growable: growable,);
       }
     }
     return map;
@@ -118,7 +109,6 @@ class UploadBlob200Response {
 
   /// The list of required keys that must be present in a JSON.
   static const requiredKeys = <String>{
-    'success',
   };
 }
 

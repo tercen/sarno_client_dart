@@ -1,4 +1,4 @@
-# sarno_client.model.UploadBlob200Response
+# sarno_client.model.ArtifactCreateResult
 
 ## Load the model package
 ```dart
@@ -8,8 +8,8 @@ import 'package:sarno_client/api.dart';
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **bool** |  | 
-**data** | [**UploadBlob200ResponseAllOfData**](UploadBlob200ResponseAllOfData.md) |  | [optional] 
+**id** | **String** |  | 
+**url** | **String** | Browser-facing path, e.g. /artifacts/{id} | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

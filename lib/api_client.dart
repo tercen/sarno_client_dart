@@ -182,6 +182,8 @@ class ApiClient {
           return valueString == 'true' || valueString == '1';
         case 'DateTime':
           return value is DateTime ? value : DateTime.tryParse(value);
+        case 'AddArtifactCommentRequest':
+          return AddArtifactCommentRequest.fromJson(value);
         case 'AddCollaboratorRequest':
           return AddCollaboratorRequest.fromJson(value);
         case 'AddMemberRequest':
@@ -196,10 +198,42 @@ class ApiClient {
           return ApiErr.fromJson(value);
         case 'ApiOk':
           return ApiOk.fromJson(value);
+        case 'ArtifactAccessBreakdown':
+          return ArtifactAccessBreakdown.fromJson(value);
+        case 'ArtifactComment':
+          return ArtifactComment.fromJson(value);
+        case 'ArtifactCommentList':
+          return ArtifactCommentList.fromJson(value);
+        case 'ArtifactCreateResult':
+          return ArtifactCreateResult.fromJson(value);
+        case 'ArtifactListResult':
+          return ArtifactListResult.fromJson(value);
+        case 'ArtifactListResultArtifactsInner':
+          return ArtifactListResultArtifactsInner.fromJson(value);
+        case 'ArtifactRefInput':
+          return ArtifactRefInput.fromJson(value);
+        case 'ArtifactRefRender':
+          return ArtifactRefRender.fromJson(value);
+        case 'ArtifactShareCheckRequest':
+          return ArtifactShareCheckRequest.fromJson(value);
+        case 'ArtifactShareCheckResult':
+          return ArtifactShareCheckResult.fromJson(value);
+        case 'ArtifactShareRequest':
+          return ArtifactShareRequest.fromJson(value);
+        case 'ArtifactShareResult':
+          return ArtifactShareResult.fromJson(value);
+        case 'ArtifactSummary':
+          return ArtifactSummary.fromJson(value);
         case 'CancelTask200Response':
           return CancelTask200Response.fromJson(value);
         case 'CancelTask200ResponseAllOfData':
           return CancelTask200ResponseAllOfData.fromJson(value);
+        case 'CheckArtifactShare200Response':
+          return CheckArtifactShare200Response.fromJson(value);
+        case 'CreateArtifact200Response':
+          return CreateArtifact200Response.fromJson(value);
+        case 'CreateArtifactRequest':
+          return CreateArtifactRequest.fromJson(value);
         case 'CreateDocument200Response':
           return CreateDocument200Response.fromJson(value);
         case 'CreateDocumentRequest':
@@ -228,6 +262,8 @@ class ApiClient {
           return CreateUser200ResponseAllOfData.fromJson(value);
         case 'CreateUserRequest':
           return CreateUserRequest.fromJson(value);
+        case 'DeleteArtifactComment200Response':
+          return DeleteArtifactComment200Response.fromJson(value);
         case 'DeleteGraph200Response':
           return DeleteGraph200Response.fromJson(value);
         case 'DeleteGraph200ResponseAllOfData':
@@ -250,6 +286,8 @@ class ApiClient {
           return DocumentSchema.fromJson(value);
         case 'Folder':
           return Folder.fromJson(value);
+        case 'GetArtifact200Response':
+          return GetArtifact200Response.fromJson(value);
         case 'GetDocumentSchema200Response':
           return GetDocumentSchema200Response.fromJson(value);
         case 'GetGraph200Response':
@@ -286,6 +324,8 @@ class ApiClient {
           return JwkSet.fromJson(value);
         case 'JwkSetKeysInner':
           return JwkSetKeysInner.fromJson(value);
+        case 'ListArtifacts200Response':
+          return ListArtifacts200Response.fromJson(value);
         case 'ListDocuments200Response':
           return ListDocuments200Response.fromJson(value);
         case 'ListFolders200Response':
@@ -392,6 +432,8 @@ class ApiClient {
           return RemoveTeamProjectAccess200Response.fromJson(value);
         case 'RemoveTeamProjectAccess200ResponseAllOfData':
           return RemoveTeamProjectAccess200ResponseAllOfData.fromJson(value);
+        case 'ResolveArtifactCommentRequest':
+          return ResolveArtifactCommentRequest.fromJson(value);
         case 'ResolveOperator200Response':
           return ResolveOperator200Response.fromJson(value);
         case 'ResolveRuntime200Response':
@@ -402,6 +444,8 @@ class ApiClient {
           return SetTeamProjectAccess200Response.fromJson(value);
         case 'SetTeamProjectAccessRequest':
           return SetTeamProjectAccessRequest.fromJson(value);
+        case 'ShareArtifact200Response':
+          return ShareArtifact200Response.fromJson(value);
         case 'SubmitGraph200Response':
           return SubmitGraph200Response.fromJson(value);
         case 'TaskInfo':
@@ -422,10 +466,8 @@ class ApiClient {
           return TokenResponse.fromJson(value);
         case 'UpdateDocumentRequest':
           return UpdateDocumentRequest.fromJson(value);
-        case 'UploadBlob200Response':
-          return UploadBlob200Response.fromJson(value);
-        case 'UploadBlob200ResponseAllOfData':
-          return UploadBlob200ResponseAllOfData.fromJson(value);
+        case 'UpdateProjectVisibilityRequest':
+          return UpdateProjectVisibilityRequest.fromJson(value);
         case 'UserInfo':
           return UserInfo.fromJson(value);
         case 'Visibility':

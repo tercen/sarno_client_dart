@@ -143,24 +143,138 @@ class OperatorsApi {
 
   /// Register an operator
   ///
+  /// Multipart upload: operator code bytes arrive inline in the same call as the metadata (no separate /api/upload step). Text fields mirror OperatorMetadata; JSON-shaped fields (input_spec, output_spec, properties, resource_model_schema, operator_spec) are submitted as JSON-encoded strings. The `code` file part is hashed into the blob store and recorded as `code_blob` on the OperatorPublish event committed to the operator's project.
+  ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
-  /// * [OperatorMetadata] operatorMetadata (required):
-  Future<Response> registerOperatorWithHttpInfo(OperatorMetadata operatorMetadata,) async {
+  /// * [String] name (required):
+  ///
+  /// * [String] version (required):
+  ///
+  /// * [String] language (required):
+  ///
+  /// * [String] org:
+  ///
+  /// * [String] description:
+  ///
+  /// * [String] runtime:
+  ///
+  /// * [String] isolationPolicy:
+  ///
+  /// * [String] gitRepo:
+  ///
+  /// * [String] gitSha:
+  ///
+  /// * [String] buildRef:
+  ///
+  /// * [String] manifestHash:
+  ///
+  /// * [String] inputSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [String] outputSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [String] properties:
+  ///   JSON-encoded object
+  ///
+  /// * [String] resourceModelSchema:
+  ///   JSON-encoded object
+  ///
+  /// * [String] operatorSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [MultipartFile] code:
+  ///   Operator source bytes. Optional for agent operators.
+  Future<Response> registerOperatorWithHttpInfo(String name, String version, String language, { String? org, String? description, String? runtime, String? isolationPolicy, String? gitRepo, String? gitSha, String? buildRef, String? manifestHash, String? inputSpec, String? outputSpec, String? properties, String? resourceModelSchema, String? operatorSpec, MultipartFile? code, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/operators';
 
     // ignore: prefer_final_locals
-    Object? postBody = operatorMetadata;
+    Object? postBody;
 
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
-    const contentTypes = <String>['application/json'];
+    const contentTypes = <String>['multipart/form-data'];
 
+    bool hasFields = false;
+    final mp = MultipartRequest('POST', Uri.parse(path));
+    if (org != null) {
+      hasFields = true;
+      mp.fields[r'org'] = parameterToString(org);
+    }
+    if (name != null) {
+      hasFields = true;
+      mp.fields[r'name'] = parameterToString(name);
+    }
+    if (version != null) {
+      hasFields = true;
+      mp.fields[r'version'] = parameterToString(version);
+    }
+    if (language != null) {
+      hasFields = true;
+      mp.fields[r'language'] = parameterToString(language);
+    }
+    if (description != null) {
+      hasFields = true;
+      mp.fields[r'description'] = parameterToString(description);
+    }
+    if (runtime != null) {
+      hasFields = true;
+      mp.fields[r'runtime'] = parameterToString(runtime);
+    }
+    if (isolationPolicy != null) {
+      hasFields = true;
+      mp.fields[r'isolation_policy'] = parameterToString(isolationPolicy);
+    }
+    if (gitRepo != null) {
+      hasFields = true;
+      mp.fields[r'git_repo'] = parameterToString(gitRepo);
+    }
+    if (gitSha != null) {
+      hasFields = true;
+      mp.fields[r'git_sha'] = parameterToString(gitSha);
+    }
+    if (buildRef != null) {
+      hasFields = true;
+      mp.fields[r'build_ref'] = parameterToString(buildRef);
+    }
+    if (manifestHash != null) {
+      hasFields = true;
+      mp.fields[r'manifest_hash'] = parameterToString(manifestHash);
+    }
+    if (inputSpec != null) {
+      hasFields = true;
+      mp.fields[r'input_spec'] = parameterToString(inputSpec);
+    }
+    if (outputSpec != null) {
+      hasFields = true;
+      mp.fields[r'output_spec'] = parameterToString(outputSpec);
+    }
+    if (properties != null) {
+      hasFields = true;
+      mp.fields[r'properties'] = parameterToString(properties);
+    }
+    if (resourceModelSchema != null) {
+      hasFields = true;
+      mp.fields[r'resource_model_schema'] = parameterToString(resourceModelSchema);
+    }
+    if (operatorSpec != null) {
+      hasFields = true;
+      mp.fields[r'operator_spec'] = parameterToString(operatorSpec);
+    }
+    if (code != null) {
+      hasFields = true;
+      mp.fields[r'code'] = code.field;
+      mp.files.add(code);
+    }
+    if (hasFields) {
+      postBody = mp;
+    }
 
     return apiClient.invokeAPI(
       path,
@@ -175,11 +289,51 @@ class OperatorsApi {
 
   /// Register an operator
   ///
+  /// Multipart upload: operator code bytes arrive inline in the same call as the metadata (no separate /api/upload step). Text fields mirror OperatorMetadata; JSON-shaped fields (input_spec, output_spec, properties, resource_model_schema, operator_spec) are submitted as JSON-encoded strings. The `code` file part is hashed into the blob store and recorded as `code_blob` on the OperatorPublish event committed to the operator's project.
+  ///
   /// Parameters:
   ///
-  /// * [OperatorMetadata] operatorMetadata (required):
-  Future<RegisterOperator200Response?> registerOperator(OperatorMetadata operatorMetadata,) async {
-    final response = await registerOperatorWithHttpInfo(operatorMetadata,);
+  /// * [String] name (required):
+  ///
+  /// * [String] version (required):
+  ///
+  /// * [String] language (required):
+  ///
+  /// * [String] org:
+  ///
+  /// * [String] description:
+  ///
+  /// * [String] runtime:
+  ///
+  /// * [String] isolationPolicy:
+  ///
+  /// * [String] gitRepo:
+  ///
+  /// * [String] gitSha:
+  ///
+  /// * [String] buildRef:
+  ///
+  /// * [String] manifestHash:
+  ///
+  /// * [String] inputSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [String] outputSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [String] properties:
+  ///   JSON-encoded object
+  ///
+  /// * [String] resourceModelSchema:
+  ///   JSON-encoded object
+  ///
+  /// * [String] operatorSpec:
+  ///   JSON-encoded object
+  ///
+  /// * [MultipartFile] code:
+  ///   Operator source bytes. Optional for agent operators.
+  Future<RegisterOperator200Response?> registerOperator(String name, String version, String language, { String? org, String? description, String? runtime, String? isolationPolicy, String? gitRepo, String? gitSha, String? buildRef, String? manifestHash, String? inputSpec, String? outputSpec, String? properties, String? resourceModelSchema, String? operatorSpec, MultipartFile? code, }) async {
+    final response = await registerOperatorWithHttpInfo(name, version, language,  org: org, description: description, runtime: runtime, isolationPolicy: isolationPolicy, gitRepo: gitRepo, gitSha: gitSha, buildRef: buildRef, manifestHash: manifestHash, inputSpec: inputSpec, outputSpec: outputSpec, properties: properties, resourceModelSchema: resourceModelSchema, operatorSpec: operatorSpec, code: code, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

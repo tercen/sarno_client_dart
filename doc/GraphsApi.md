@@ -126,11 +126,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getGraph**
-> GetGraph200Response getGraph(id)
+> GetGraph200Response getGraph(id, branch)
 
 Get current graph state
 
-Requires Read permission on the graph's project.
+Requires Read permission on the graph's project. When `?branch=<name>` is set, returns the graph content materialised from that branch's event-DAG (patches applied through the branch's tip). Without `branch`, returns the legacy project-wide row.
 
 ### Example
 ```dart
@@ -148,9 +148,10 @@ import 'package:sarno_client/api.dart';
 
 final api_instance = GraphsApi();
 final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final branch = branch_example; // String | Materialise the graph from this branch's event-DAG. Nodes/edges/patches diverge across branches; the legacy row mixes them. 404 when the graph isn't present on the branch.
 
 try {
-    final result = api_instance.getGraph(id);
+    final result = api_instance.getGraph(id, branch);
     print(result);
 } catch (e) {
     print('Exception when calling GraphsApi->getGraph: $e\n');
@@ -162,6 +163,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
+ **branch** | **String**| Materialise the graph from this branch's event-DAG. Nodes/edges/patches diverge across branches; the legacy row mixes them. 404 when the graph isn't present on the branch. | [optional] 
 
 ### Return type
 
@@ -179,7 +181,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getGraphAtRevision**
-> GetGraph200Response getGraphAtRevision(id, rev)
+> GetGraph200Response getGraphAtRevision(id, rev, branch)
 
 Get graph state at a specific revision (time travel)
 
@@ -200,9 +202,10 @@ import 'package:sarno_client/api.dart';
 final api_instance = GraphsApi();
 final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final rev = 789; // int | 
+final branch = branch_example; // String | Branch-scope the time-travel lookup. Accepted in the schema for #93 surface parity; revisions today are global per-graph, not per-branch — per-branch revisions are the natural follow-up alongside `graph_patches` carrying a branch column.
 
 try {
-    final result = api_instance.getGraphAtRevision(id, rev);
+    final result = api_instance.getGraphAtRevision(id, rev, branch);
     print(result);
 } catch (e) {
     print('Exception when calling GraphsApi->getGraphAtRevision: $e\n');
@@ -215,6 +218,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
  **rev** | **int**|  | 
+ **branch** | **String**| Branch-scope the time-travel lookup. Accepted in the schema for #93 surface parity; revisions today are global per-graph, not per-branch — per-branch revisions are the natural follow-up alongside `graph_patches` carrying a branch column. | [optional] 
 
 ### Return type
 
@@ -232,7 +236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getGraphHistory**
-> GetGraphHistory200Response getGraphHistory(id)
+> GetGraphHistory200Response getGraphHistory(id, branch)
 
 Get patch history for a graph
 
@@ -252,9 +256,10 @@ import 'package:sarno_client/api.dart';
 
 final api_instance = GraphsApi();
 final id = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final branch = branch_example; // String | Branch-scope the history. Accepted in the schema for #93 surface parity; behaviour-wise the response is still cross-branch — branch-scoped history is the natural follow-up since `graph_patches` rows don't carry a branch column yet.
 
 try {
-    final result = api_instance.getGraphHistory(id);
+    final result = api_instance.getGraphHistory(id, branch);
     print(result);
 } catch (e) {
     print('Exception when calling GraphsApi->getGraphHistory: $e\n');
@@ -266,6 +271,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**|  | 
+ **branch** | **String**| Branch-scope the history. Accepted in the schema for #93 surface parity; behaviour-wise the response is still cross-branch — branch-scoped history is the natural follow-up since `graph_patches` rows don't carry a branch column yet. | [optional] 
 
 ### Return type
 
@@ -283,7 +289,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listGraphs**
-> ListGraphs200Response listGraphs(projectId, folderId, recursive)
+> ListGraphs200Response listGraphs(projectId, folderId, recursive, branch)
 
 List graphs in a project
 
@@ -307,9 +313,10 @@ final api_instance = GraphsApi();
 final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final folderId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by folder (omit for project root)
 final recursive = true; // bool | Return every graph in the project regardless of folder. Overrides `folder_id`.
+final branch = branch_example; // String | Filter to graphs visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
 
 try {
-    final result = api_instance.listGraphs(projectId, folderId, recursive);
+    final result = api_instance.listGraphs(projectId, folderId, recursive, branch);
     print(result);
 } catch (e) {
     print('Exception when calling GraphsApi->listGraphs: $e\n');
@@ -323,6 +330,7 @@ Name | Type | Description  | Notes
  **projectId** | **String**|  | 
  **folderId** | **String**| Filter by folder (omit for project root) | [optional] 
  **recursive** | **bool**| Return every graph in the project regardless of folder. Overrides `folder_id`. | [optional] 
+ **branch** | **String**| Filter to graphs visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). | [optional] 
 
 ### Return type
 

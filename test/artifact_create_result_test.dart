@@ -11,18 +11,19 @@
 import 'package:sarno_client/api.dart';
 import 'package:test/test.dart';
 
-// tests for UploadBlob200Response
+// tests for ArtifactCreateResult
 void main() {
-  // final instance = UploadBlob200Response();
+  // final instance = ArtifactCreateResult();
 
-  group('test UploadBlob200Response', () {
-    // bool success
-    test('to test the property `success`', () async {
+  group('test ArtifactCreateResult', () {
+    // String id
+    test('to test the property `id`', () async {
       // TODO
     });
 
-    // UploadBlob200ResponseAllOfData data
-    test('to test the property `data`', () async {
+    // Browser-facing path, e.g. /artifacts/{id}
+    // String url
+    test('to test the property `url`', () async {
       // TODO
     });
 

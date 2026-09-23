@@ -125,9 +125,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **registerOperator**
-> RegisterOperator200Response registerOperator(operatorMetadata)
+> RegisterOperator200Response registerOperator(name, version, language, org, description, runtime, isolationPolicy, gitRepo, gitSha, buildRef, manifestHash, inputSpec, outputSpec, properties, resourceModelSchema, operatorSpec, code)
 
 Register an operator
+
+Multipart upload: operator code bytes arrive inline in the same call as the metadata (no separate /api/upload step). Text fields mirror OperatorMetadata; JSON-shaped fields (input_spec, output_spec, properties, resource_model_schema, operator_spec) are submitted as JSON-encoded strings. The `code` file part is hashed into the blob store and recorded as `code_blob` on the OperatorPublish event committed to the operator's project.
 
 ### Example
 ```dart
@@ -144,10 +146,26 @@ import 'package:sarno_client/api.dart';
 //defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
 
 final api_instance = OperatorsApi();
-final operatorMetadata = OperatorMetadata(); // OperatorMetadata | 
+final name = name_example; // String | 
+final version = version_example; // String | 
+final language = language_example; // String | 
+final org = org_example; // String | 
+final description = description_example; // String | 
+final runtime = runtime_example; // String | 
+final isolationPolicy = isolationPolicy_example; // String | 
+final gitRepo = gitRepo_example; // String | 
+final gitSha = gitSha_example; // String | 
+final buildRef = buildRef_example; // String | 
+final manifestHash = manifestHash_example; // String | 
+final inputSpec = inputSpec_example; // String | JSON-encoded object
+final outputSpec = outputSpec_example; // String | JSON-encoded object
+final properties = properties_example; // String | JSON-encoded object
+final resourceModelSchema = resourceModelSchema_example; // String | JSON-encoded object
+final operatorSpec = operatorSpec_example; // String | JSON-encoded object
+final code = BINARY_DATA_HERE; // MultipartFile | Operator source bytes. Optional for agent operators.
 
 try {
-    final result = api_instance.registerOperator(operatorMetadata);
+    final result = api_instance.registerOperator(name, version, language, org, description, runtime, isolationPolicy, gitRepo, gitSha, buildRef, manifestHash, inputSpec, outputSpec, properties, resourceModelSchema, operatorSpec, code);
     print(result);
 } catch (e) {
     print('Exception when calling OperatorsApi->registerOperator: $e\n');
@@ -158,7 +176,23 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **operatorMetadata** | [**OperatorMetadata**](OperatorMetadata.md)|  | 
+ **name** | **String**|  | 
+ **version** | **String**|  | 
+ **language** | **String**|  | 
+ **org** | **String**|  | [optional] 
+ **description** | **String**|  | [optional] 
+ **runtime** | **String**|  | [optional] 
+ **isolationPolicy** | **String**|  | [optional] 
+ **gitRepo** | **String**|  | [optional] 
+ **gitSha** | **String**|  | [optional] 
+ **buildRef** | **String**|  | [optional] 
+ **manifestHash** | **String**|  | [optional] 
+ **inputSpec** | **String**| JSON-encoded object | [optional] 
+ **outputSpec** | **String**| JSON-encoded object | [optional] 
+ **properties** | **String**| JSON-encoded object | [optional] 
+ **resourceModelSchema** | **String**| JSON-encoded object | [optional] 
+ **operatorSpec** | **String**| JSON-encoded object | [optional] 
+ **code** | **MultipartFile**| Operator source bytes. Optional for agent operators. | [optional] 
 
 ### Return type
 
@@ -170,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
