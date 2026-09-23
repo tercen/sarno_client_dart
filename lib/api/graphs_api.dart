@@ -131,14 +131,17 @@ class GraphsApi {
 
   /// Get current graph state
   ///
-  /// Requires Read permission on the graph's project.
+  /// Requires Read permission on the graph's project. When `?branch=<name>` is set, returns the graph content materialised from that branch's event-DAG (patches applied through the branch's tip). Without `branch`, returns the legacy project-wide row.
   ///
   /// Note: This method returns the HTTP [Response].
   ///
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Response> getGraphWithHttpInfo(String id,) async {
+  ///
+  /// * [String] branch:
+  ///   Materialise the graph from this branch's event-DAG. Nodes/edges/patches diverge across branches; the legacy row mixes them. 404 when the graph isn't present on the branch.
+  Future<Response> getGraphWithHttpInfo(String id, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/graph/{id}'
       .replaceAll('{id}', id);
@@ -149,6 +152,10 @@ class GraphsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
 
     const contentTypes = <String>[];
 
@@ -166,13 +173,16 @@ class GraphsApi {
 
   /// Get current graph state
   ///
-  /// Requires Read permission on the graph's project.
+  /// Requires Read permission on the graph's project. When `?branch=<name>` is set, returns the graph content materialised from that branch's event-DAG (patches applied through the branch's tip). Without `branch`, returns the legacy project-wide row.
   ///
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<GetGraph200Response?> getGraph(String id,) async {
-    final response = await getGraphWithHttpInfo(id,);
+  ///
+  /// * [String] branch:
+  ///   Materialise the graph from this branch's event-DAG. Nodes/edges/patches diverge across branches; the legacy row mixes them. 404 when the graph isn't present on the branch.
+  Future<GetGraph200Response?> getGraph(String id, { String? branch, }) async {
+    final response = await getGraphWithHttpInfo(id,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -195,7 +205,10 @@ class GraphsApi {
   /// * [String] id (required):
   ///
   /// * [int] rev (required):
-  Future<Response> getGraphAtRevisionWithHttpInfo(String id, int rev,) async {
+  ///
+  /// * [String] branch:
+  ///   Branch-scope the time-travel lookup. Accepted in the schema for #93 surface parity; revisions today are global per-graph, not per-branch — per-branch revisions are the natural follow-up alongside `graph_patches` carrying a branch column.
+  Future<Response> getGraphAtRevisionWithHttpInfo(String id, int rev, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/graph/{id}/at/{rev}'
       .replaceAll('{id}', id)
@@ -208,6 +221,10 @@ class GraphsApi {
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
 
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
+
     const contentTypes = <String>[];
 
 
@@ -229,8 +246,11 @@ class GraphsApi {
   /// * [String] id (required):
   ///
   /// * [int] rev (required):
-  Future<GetGraph200Response?> getGraphAtRevision(String id, int rev,) async {
-    final response = await getGraphAtRevisionWithHttpInfo(id, rev,);
+  ///
+  /// * [String] branch:
+  ///   Branch-scope the time-travel lookup. Accepted in the schema for #93 surface parity; revisions today are global per-graph, not per-branch — per-branch revisions are the natural follow-up alongside `graph_patches` carrying a branch column.
+  Future<GetGraph200Response?> getGraphAtRevision(String id, int rev, { String? branch, }) async {
+    final response = await getGraphAtRevisionWithHttpInfo(id, rev,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -251,7 +271,10 @@ class GraphsApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<Response> getGraphHistoryWithHttpInfo(String id,) async {
+  ///
+  /// * [String] branch:
+  ///   Branch-scope the history. Accepted in the schema for #93 surface parity; behaviour-wise the response is still cross-branch — branch-scoped history is the natural follow-up since `graph_patches` rows don't carry a branch column yet.
+  Future<Response> getGraphHistoryWithHttpInfo(String id, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/graph/{id}/history'
       .replaceAll('{id}', id);
@@ -262,6 +285,10 @@ class GraphsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
 
     const contentTypes = <String>[];
 
@@ -282,8 +309,11 @@ class GraphsApi {
   /// Parameters:
   ///
   /// * [String] id (required):
-  Future<GetGraphHistory200Response?> getGraphHistory(String id,) async {
-    final response = await getGraphHistoryWithHttpInfo(id,);
+  ///
+  /// * [String] branch:
+  ///   Branch-scope the history. Accepted in the schema for #93 surface parity; behaviour-wise the response is still cross-branch — branch-scoped history is the natural follow-up since `graph_patches` rows don't carry a branch column yet.
+  Future<GetGraphHistory200Response?> getGraphHistory(String id, { String? branch, }) async {
+    final response = await getGraphHistoryWithHttpInfo(id,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -312,7 +342,10 @@ class GraphsApi {
   ///
   /// * [bool] recursive:
   ///   Return every graph in the project regardless of folder. Overrides `folder_id`.
-  Future<Response> listGraphsWithHttpInfo(String projectId, { String? folderId, bool? recursive, }) async {
+  ///
+  /// * [String] branch:
+  ///   Filter to graphs visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
+  Future<Response> listGraphsWithHttpInfo(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/projects/{project_id}/graphs'
       .replaceAll('{project_id}', projectId);
@@ -329,6 +362,9 @@ class GraphsApi {
     }
     if (recursive != null) {
       queryParams.addAll(_queryParams('', 'recursive', recursive));
+    }
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
     }
 
     const contentTypes = <String>[];
@@ -358,8 +394,11 @@ class GraphsApi {
   ///
   /// * [bool] recursive:
   ///   Return every graph in the project regardless of folder. Overrides `folder_id`.
-  Future<ListGraphs200Response?> listGraphs(String projectId, { String? folderId, bool? recursive, }) async {
-    final response = await listGraphsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, );
+  ///
+  /// * [String] branch:
+  ///   Filter to graphs visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
+  Future<ListGraphs200Response?> listGraphs(String projectId, { String? folderId, bool? recursive, String? branch, }) async {
+    final response = await listGraphsWithHttpInfo(projectId,  folderId: folderId, recursive: recursive, branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

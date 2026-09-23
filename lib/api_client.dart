@@ -422,10 +422,6 @@ class ApiClient {
           return TokenResponse.fromJson(value);
         case 'UpdateDocumentRequest':
           return UpdateDocumentRequest.fromJson(value);
-        case 'UploadBlob200Response':
-          return UploadBlob200Response.fromJson(value);
-        case 'UploadBlob200ResponseAllOfData':
-          return UploadBlob200ResponseAllOfData.fromJson(value);
         case 'UserInfo':
           return UserInfo.fromJson(value);
         case 'Visibility':

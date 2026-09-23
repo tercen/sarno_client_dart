@@ -10,7 +10,6 @@ doc/AddTeamMember200Response.md
 doc/ApiErr.md
 doc/ApiOk.md
 doc/AuthApi.md
-doc/BlobsApi.md
 doc/BranchesApi.md
 doc/CancelTask200Response.md
 doc/CancelTask200ResponseAllOfData.md
@@ -138,15 +137,12 @@ doc/TeamsApi.md
 doc/TokenRequest.md
 doc/TokenResponse.md
 doc/UpdateDocumentRequest.md
-doc/UploadBlob200Response.md
-doc/UploadBlob200ResponseAllOfData.md
 doc/UserInfo.md
 doc/UsersApi.md
 doc/Visibility.md
 git_push.sh
 lib/api.dart
 lib/api/auth_api.dart
-lib/api/blobs_api.dart
 lib/api/branches_api.dart
 lib/api/collaborators_api.dart
 lib/api/documents_api.dart
@@ -290,8 +286,6 @@ lib/model/team_role.dart
 lib/model/token_request.dart
 lib/model/token_response.dart
 lib/model/update_document_request.dart
-lib/model/upload_blob200_response.dart
-lib/model/upload_blob200_response_all_of_data.dart
 lib/model/user_info.dart
 lib/model/visibility.dart
 pubspec.yaml

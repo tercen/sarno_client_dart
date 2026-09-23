@@ -29,7 +29,6 @@ part 'auth/http_basic_auth.dart';
 part 'auth/http_bearer_auth.dart';
 
 part 'api/auth_api.dart';
-part 'api/blobs_api.dart';
 part 'api/branches_api.dart';
 part 'api/collaborators_api.dart';
 part 'api/documents_api.dart';
@@ -166,8 +165,6 @@ part 'model/team_role.dart';
 part 'model/token_request.dart';
 part 'model/token_response.dart';
 part 'model/update_document_request.dart';
-part 'model/upload_blob200_response.dart';
-part 'model/upload_blob200_response_all_of_data.dart';
 part 'model/user_info.dart';
 part 'model/visibility.dart';
 

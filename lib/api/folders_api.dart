@@ -144,7 +144,13 @@ class FoldersApi {
   ///
   /// * [String] parentId:
   ///   Filter by parent folder (omit for root)
-  Future<Response> listFoldersWithHttpInfo(String projectId, { String? parentId, }) async {
+  ///
+  /// * [bool] recursive:
+  ///   Return every folder in the project regardless of parent. Overrides `parent_id`.
+  ///
+  /// * [String] branch:
+  ///   Filter to folders visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
+  Future<Response> listFoldersWithHttpInfo(String projectId, { String? parentId, bool? recursive, String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/projects/{project_id}/folders'
       .replaceAll('{project_id}', projectId);
@@ -158,6 +164,12 @@ class FoldersApi {
 
     if (parentId != null) {
       queryParams.addAll(_queryParams('', 'parent_id', parentId));
+    }
+    if (recursive != null) {
+      queryParams.addAll(_queryParams('', 'recursive', recursive));
+    }
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
     }
 
     const contentTypes = <String>[];
@@ -182,8 +194,14 @@ class FoldersApi {
   ///
   /// * [String] parentId:
   ///   Filter by parent folder (omit for root)
-  Future<ListFolders200Response?> listFolders(String projectId, { String? parentId, }) async {
-    final response = await listFoldersWithHttpInfo(projectId,  parentId: parentId, );
+  ///
+  /// * [bool] recursive:
+  ///   Return every folder in the project regardless of parent. Overrides `parent_id`.
+  ///
+  /// * [String] branch:
+  ///   Filter to folders visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
+  Future<ListFolders200Response?> listFolders(String projectId, { String? parentId, bool? recursive, String? branch, }) async {
+    final response = await listFoldersWithHttpInfo(projectId,  parentId: parentId, recursive: recursive, branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }

@@ -64,7 +64,6 @@ Class | Method | HTTP request | Description
 *AuthApi* | [**getJwks**](doc//AuthApi.md#getjwks) | **GET** /auth/jwks | JSON Web Key Set for token verification
 *AuthApi* | [**getOpenIdConfiguration**](doc//AuthApi.md#getopenidconfiguration) | **GET** /.well-known/openid-configuration | OpenID Connect discovery document
 *AuthApi* | [**getUserInfo**](doc//AuthApi.md#getuserinfo) | **GET** /auth/userinfo | Get authenticated user identity
-*BlobsApi* | [**uploadBlob**](doc//BlobsApi.md#uploadblob) | **POST** /api/upload | Upload a file as a blob
 *BranchesApi* | [**mergeBranches**](doc//BranchesApi.md#mergebranches) | **POST** /api/projects/{project_id}/merges | Merge a source branch into a target branch within a project
 *CollaboratorsApi* | [**addProjectCollaborator**](doc//CollaboratorsApi.md#addprojectcollaborator) | **POST** /api/projects/{project_id}/collaborators | Add a collaborator to a project
 *CollaboratorsApi* | [**listProjectCollaborators**](doc//CollaboratorsApi.md#listprojectcollaborators) | **GET** /api/projects/{project_id}/collaborators | List project collaborators
@@ -252,8 +251,6 @@ Class | Method | HTTP request | Description
  - [TokenRequest](doc//TokenRequest.md)
  - [TokenResponse](doc//TokenResponse.md)
  - [UpdateDocumentRequest](doc//UpdateDocumentRequest.md)
- - [UploadBlob200Response](doc//UploadBlob200Response.md)
- - [UploadBlob200ResponseAllOfData](doc//UploadBlob200ResponseAllOfData.md)
  - [UserInfo](doc//UserInfo.md)
  - [Visibility](doc//Visibility.md)
 

@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listFolders**
-> ListFolders200Response listFolders(projectId, parentId)
+> ListFolders200Response listFolders(projectId, parentId, recursive, branch)
 
 List folders in a project
 
@@ -144,9 +144,11 @@ import 'package:sarno_client/api.dart';
 final api_instance = FoldersApi();
 final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
 final parentId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | Filter by parent folder (omit for root)
+final recursive = true; // bool | Return every folder in the project regardless of parent. Overrides `parent_id`.
+final branch = branch_example; // String | Filter to folders visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch).
 
 try {
-    final result = api_instance.listFolders(projectId, parentId);
+    final result = api_instance.listFolders(projectId, parentId, recursive, branch);
     print(result);
 } catch (e) {
     print('Exception when calling FoldersApi->listFolders: $e\n');
@@ -159,6 +161,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **String**|  | 
  **parentId** | **String**| Filter by parent folder (omit for root) | [optional] 
+ **recursive** | **bool**| Return every folder in the project regardless of parent. Overrides `parent_id`. | [optional] 
+ **branch** | **String**| Filter to folders visible from this branch's event-DAG history. When omitted, returns the legacy project-wide listing (rows across every branch). | [optional] 
 
 ### Return type
 

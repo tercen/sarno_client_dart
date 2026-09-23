@@ -144,7 +144,10 @@ class DocumentsApi {
   ///
   /// * [String] documentId (required):
   ///   Document UUID
-  Future<Response> downloadDocumentWithHttpInfo(String documentId,) async {
+  ///
+  /// * [String] branch:
+  ///   Stream the branch-specific version of the document. The blob_hash on each branch can differ for the same document id; this query routes the byte source through the branch's MaterializedState. 404 when the document isn't present on the branch.
+  Future<Response> downloadDocumentWithHttpInfo(String documentId, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/documents/{document_id}/download'
       .replaceAll('{document_id}', documentId);
@@ -155,6 +158,10 @@ class DocumentsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
 
     const contentTypes = <String>[];
 
@@ -178,8 +185,11 @@ class DocumentsApi {
   ///
   /// * [String] documentId (required):
   ///   Document UUID
-  Future<MultipartFile?> downloadDocument(String documentId,) async {
-    final response = await downloadDocumentWithHttpInfo(documentId,);
+  ///
+  /// * [String] branch:
+  ///   Stream the branch-specific version of the document. The blob_hash on each branch can differ for the same document id; this query routes the byte source through the branch's MaterializedState. 404 when the document isn't present on the branch.
+  Future<MultipartFile?> downloadDocument(String documentId, { String? branch, }) async {
+    final response = await downloadDocumentWithHttpInfo(documentId,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -200,7 +210,10 @@ class DocumentsApi {
   /// Parameters:
   ///
   /// * [String] documentId (required):
-  Future<Response> getDocumentWithHttpInfo(String documentId,) async {
+  ///
+  /// * [String] branch:
+  ///   Return the branch-specific row (blob_hash, mime_type, size, name, folder_id may differ across branches). 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
+  Future<Response> getDocumentWithHttpInfo(String documentId, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/documents/{document_id}'
       .replaceAll('{document_id}', documentId);
@@ -211,6 +224,10 @@ class DocumentsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
 
     const contentTypes = <String>[];
 
@@ -231,8 +248,11 @@ class DocumentsApi {
   /// Parameters:
   ///
   /// * [String] documentId (required):
-  Future<CreateDocument200Response?> getDocument(String documentId,) async {
-    final response = await getDocumentWithHttpInfo(documentId,);
+  ///
+  /// * [String] branch:
+  ///   Return the branch-specific row (blob_hash, mime_type, size, name, folder_id may differ across branches). 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
+  Future<CreateDocument200Response?> getDocument(String documentId, { String? branch, }) async {
+    final response = await getDocumentWithHttpInfo(documentId,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -256,7 +276,10 @@ class DocumentsApi {
   ///
   /// * [String] documentId (required):
   ///   Document UUID
-  Future<Response> getDocumentSchemaWithHttpInfo(String documentId,) async {
+  ///
+  /// * [String] branch:
+  ///   Schema reflects the branch-specific blob_hash. Returns 404 when the document isn't present on the branch.
+  Future<Response> getDocumentSchemaWithHttpInfo(String documentId, { String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/documents/{document_id}/schema'
       .replaceAll('{document_id}', documentId);
@@ -267,6 +290,10 @@ class DocumentsApi {
     final queryParams = <QueryParam>[];
     final headerParams = <String, String>{};
     final formParams = <String, String>{};
+
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
+    }
 
     const contentTypes = <String>[];
 
@@ -290,8 +317,11 @@ class DocumentsApi {
   ///
   /// * [String] documentId (required):
   ///   Document UUID
-  Future<GetDocumentSchema200Response?> getDocumentSchema(String documentId,) async {
-    final response = await getDocumentSchemaWithHttpInfo(documentId,);
+  ///
+  /// * [String] branch:
+  ///   Schema reflects the branch-specific blob_hash. Returns 404 when the document isn't present on the branch.
+  Future<GetDocumentSchema200Response?> getDocumentSchema(String documentId, { String? branch, }) async {
+    final response = await getDocumentSchemaWithHttpInfo(documentId,  branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
@@ -411,7 +441,10 @@ class DocumentsApi {
   ///
   /// * [String] columns:
   ///   Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection).
-  Future<Response> peekDocumentWithHttpInfo(String documentId, { int? maxRows, String? columns, }) async {
+  ///
+  /// * [String] branch:
+  ///   Peek the branch-specific blob_hash. Returns 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
+  Future<Response> peekDocumentWithHttpInfo(String documentId, { int? maxRows, String? columns, String? branch, }) async {
     // ignore: prefer_const_declarations
     final path = r'/api/documents/{document_id}/peek'
       .replaceAll('{document_id}', documentId);
@@ -428,6 +461,9 @@ class DocumentsApi {
     }
     if (columns != null) {
       queryParams.addAll(_queryParams('', 'columns', columns));
+    }
+    if (branch != null) {
+      queryParams.addAll(_queryParams('', 'branch', branch));
     }
 
     const contentTypes = <String>[];
@@ -458,8 +494,11 @@ class DocumentsApi {
   ///
   /// * [String] columns:
   ///   Comma-separated column names. Absent columns are silently dropped (mirrors SQL projection).
-  Future<PeekDocument200Response?> peekDocument(String documentId, { int? maxRows, String? columns, }) async {
-    final response = await peekDocumentWithHttpInfo(documentId,  maxRows: maxRows, columns: columns, );
+  ///
+  /// * [String] branch:
+  ///   Peek the branch-specific blob_hash. Returns 404 when the document isn't present on the branch. Omit for the legacy project-wide row.
+  Future<PeekDocument200Response?> peekDocument(String documentId, { int? maxRows, String? columns, String? branch, }) async {
+    final response = await peekDocumentWithHttpInfo(documentId,  maxRows: maxRows, columns: columns, branch: branch, );
     if (response.statusCode >= HttpStatus.badRequest) {
       throw ApiException(response.statusCode, await _decodeBodyBytes(response));
     }
