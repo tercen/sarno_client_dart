@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**deleteProject**](ProjectsApi.md#deleteproject) | **DELETE** /api/projects/{owner}/{slug} | Delete a project
 [**getProject**](ProjectsApi.md#getproject) | **GET** /api/projects/{owner}/{slug} | Get project by owner and slug
 [**listProjects**](ProjectsApi.md#listprojects) | **GET** /api/projects | List projects visible to the authenticated user
+[**updateProjectVisibility**](ProjectsApi.md#updateprojectvisibility) | **PUT** /api/projects/{project_id}/visibility | Change a project's visibility
 
 
 # **createProject**
@@ -223,6 +224,61 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateProjectVisibility**
+> CreateProject200Response updateProjectVisibility(projectId, updateProjectVisibilityRequest)
+
+Change a project's visibility
+
+Requires Admin on the project. \"internal\" is rejected on a user:-owned project (see UpdateProjectVisibilityRequest).
+
+### Example
+```dart
+import 'package:sarno_client/api.dart';
+// TODO Configure API key authorization: apiKeyAuth
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKey = 'YOUR_API_KEY';
+// uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+//defaultApiClient.getAuthentication<ApiKeyAuth>('apiKeyAuth').apiKeyPrefix = 'Bearer';
+// TODO Configure HTTP Bearer authorization: bearerAuth
+// Case 1. Use String Token
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken('YOUR_ACCESS_TOKEN');
+// Case 2. Use Function which generate token.
+// String yourTokenGeneratorFunction() { ... }
+//defaultApiClient.getAuthentication<HttpBearerAuth>('bearerAuth').setAccessToken(yourTokenGeneratorFunction);
+
+final api_instance = ProjectsApi();
+final projectId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final updateProjectVisibilityRequest = UpdateProjectVisibilityRequest(); // UpdateProjectVisibilityRequest | 
+
+try {
+    final result = api_instance.updateProjectVisibility(projectId, updateProjectVisibilityRequest);
+    print(result);
+} catch (e) {
+    print('Exception when calling ProjectsApi->updateProjectVisibility: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **String**|  | 
+ **updateProjectVisibilityRequest** | [**UpdateProjectVisibilityRequest**](UpdateProjectVisibilityRequest.md)|  | 
+
+### Return type
+
+[**CreateProject200Response**](CreateProject200Response.md)
+
+### Authorization
+
+[apiKeyAuth](../README.md#apiKeyAuth), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
